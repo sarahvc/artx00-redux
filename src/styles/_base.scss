@@ -23,3 +23,142 @@ body {
  .navbar {
      border-bottom: 4px solid dodgerblue; 
  }
+
+
+ @mixin font($n, $m) {
+    font-size: 1rem * $n;
+    line-height: 1rem * $m;
+}
+
+.artx-type-twl {
+    @include font(0.75, 1);
+}
+
+.artx-type-ft {
+    @include font(0.875, 1.125);
+}
+
+.artx-type-et {
+    @include font(1.125, 1.5);
+}
+
+.artx-type-tw {
+    @include font(1.25, 1.625);
+}
+
+.artx-type-twf {
+    @include font(1.5, 1.875);
+}
+
+.artx-type-tws {
+    @include font(1.625, 2);
+}
+
+.artx-type-ths {
+    @include font(2.25, 3.125);
+}
+
+.artx-type-sf {
+    @include font(4, 5.375);
+}
+
+.artx-type-st {
+    @include font(4.5, 6.125);
+}
+
+/*
+.artx-type-sourcesans {
+}
+
+.artx-type-andale {
+}
+*/
+
+.artx-gradient-bg {
+    background: radial-gradient(circle at 0 100%, #000549, #0e0525) left bottom fixed;
+    background-size: cover;
+}
+
+.artx-dark-bg {
+    background-color: #0E0525;
+}
+
+.bg-transparent {
+    background-color: transparent;
+}
+
+.artx-btn {
+    border: 0;
+    border-radius: 5px;
+    background-image: linear-gradient(105deg, #43d7a7, #ad5ef3);
+    box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.fa-question-circle {
+    margin-top: -0.8rem;
+}
+
+.artx-green {
+    color:#47D4AA;
+}
+
+.artx-purple {
+    color:#a962f0;
+}
+
+.artx-code-green {
+    color: #66d200;
+}
+
+.artx-gradient-outter {
+    box-shadow: 2px 2px 10px 5px rgba(73, 110, 105, 0.5), 2px 2px 10px 5px rgba(73, 110, 105, 0.5);
+    background-image: linear-gradient(114deg, #43d7a7, #ad5ef3);
+}
+
+.artx-gradient-inner {
+    background-color: #0e0525;
+}
+
+.artx-gradient-text {
+    background: linear-gradient(98deg, #43d7a7, #ad5ef3);
+    background-clip: text;
+	-webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border: 0; 
+}
+
+
+$spacer: 4px !default;
+$spacers: () !default;
+$spacers: map-merge((3: $spacer * 3, 8: $spacer * 8, 9: $spacer * 9, 13: $spacer * 13, 14: $spacer * 14, 16: $spacer * 16, 18: $spacer * 18, 32: $spacer * 32, 48: $spacer * 48), $spacers);
+
+@each $prop, $abbrev in (margin: am, padding: ap) {
+  @each $size, $length in $spacers {
+    .#{$abbrev}-#{$size} {
+      #{$prop}: $length;
+    }
+
+    .#{$abbrev}t-#{$size},
+    .#{$abbrev}y-#{$size} {
+      #{$prop}-top: $length;
+    }
+
+    .#{$abbrev}r-#{$size},
+    .#{$abbrev}x-#{$size} {
+      #{$prop}-right: $length;
+    }
+
+    .#{$abbrev}b-#{$size},
+    .#{$abbrev}y-#{$size} {
+      #{$prop}-bottom: $length;
+    }
+
+    .#{$abbrev}l-#{$size},
+    .#{$abbrev}x-#{$size} {
+      #{$prop}-left: $length;
+    }
+  }
+}
+  
+
+

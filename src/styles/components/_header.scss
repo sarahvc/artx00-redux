@@ -4,3 +4,14 @@
     border-bottom: 2px solid tomato;
     text-decoration: none;
 }
+
+.artx-header {
+    left: 0;
+    top: 0;
+    z-index: 10;
+    a, a:hover, a:active {
+        color: white;
+    }
+    background: radial-gradient(circle at 0 100%, #000549, #0e0525) left top fixed;
+    background-size: cover;
+}

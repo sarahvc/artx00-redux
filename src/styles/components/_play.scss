@@ -1,0 +1,43 @@
+.artx-jackpot-percent {
+    height: 20px;
+    border-radius: 5px;
+    border: solid 2px;
+    border-image: linear-gradient(93deg, #43d7a7, #ad5ef3);
+    border-image-slice: 1;
+    div {
+        border-right: solid 2px;
+        border-image: linear-gradient(93deg, #43d7a7, #ad5ef3);
+        border-image-slice: 1;
+    }
+}
+
+.artx-header {
+    top: 0;
+    left: 0;
+}
+
+.artx-explaination {
+    max-width: 430px;
+}
+
+.artx-eth-s {
+    width: 1rem;
+    height: 1.67rem;
+}
+
+.artx-eth-m {
+    width: 1.5rem;
+    height: 2.5rem;
+}
+
+.artx-jackpot-status {
+    max-width: 300px;
+}
+
+.artx-rule {
+    margin-top: 176px;
+    margin-bottom: 110px;
+    p {
+        max-width: 570px;
+    }
+}
