@@ -11,13 +11,13 @@ export const FETCH_NETWORK_REJECTED = 'FETCH_NETWORK_REJECTED';
 // ACTION GENERATORS
 
 const fetchAccountsAction = () => ({
-  type: FETCH_ACCOUNTS,
-  payload: fetchAccounts()
+    type: FETCH_ACCOUNTS,
+    payload: fetchAccounts()
 });
 
 const fetchNetworkAction = () => ({
-  type: FETCH_NETWORK,
-  payload: fetchNetwork()
+    type: FETCH_NETWORK,
+    payload: fetchNetwork()
 });
 
 

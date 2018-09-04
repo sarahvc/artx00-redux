@@ -7,7 +7,7 @@ const AccountTR = ({label, content}) => {
             <th className='artx-type-twf text-white py-2 pr-5'>{label}</th>
             <td className='artx-type-twf text-white text-right py-2'>{content}ETH</td>
         </tr>
-    )
+    );
 };
 
 export default AccountTR;
@@ -15,4 +15,4 @@ export default AccountTR;
 AccountTR.propTypes = {
     label: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired
-}
+};

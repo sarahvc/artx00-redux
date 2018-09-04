@@ -11,8 +11,8 @@ import creating from '../../images/creatingasmining.png';
 // COMPONENT
 
 const AboutPage = () => (
-    <div className='animated fadeIn'>
-        <main>
+    <div className='artx-gradient-bg animated fadeIn'>
+        <main className='pt-5 mt-5'>
             <img src={studio} className='amt-18' alt='ARTX LAB'/>
             <div className='container mt-4'>
                 <p className='artx-type-twf text-center text-white'>A Decentralized Art Ecosystem: Blockchain-based Protocol &amp; dApps</p>

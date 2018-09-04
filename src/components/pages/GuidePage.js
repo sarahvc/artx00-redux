@@ -1,11 +1,11 @@
 import React from 'react';
-import Quote from './atoms/Quote';
-import Subscribe from './atoms/Subscribe';
-import Footer from './atoms/Footer';
+import Quote from '../shared/atoms/Quote';
+import Subscribe from '../shared/atoms/Subscribe';
+import Footer from '../shared/atoms/Footer';
 
-const PlayerGuide = () => (
-    <div>
-        <div>
+const GuidePage = () => (
+    <div className='artx-gradient-bg'>
+        <main className='pt-5 mt-5'>
             <div className='container'>
                 <h1 className='artx-type-st artx-gradient-text text-center amt-18'>DArt Player Guide</h1>
                 <h2 className='artx-type-ths artx-gradient-text amt-18'>Summary</h2>
@@ -35,9 +35,9 @@ const PlayerGuide = () => (
             </div>
             <Quote/>
             <Subscribe/>
-        </div>
+        </main>
         <Footer/>
     </div>
 );
 
-export default PlayerGuide;
+export { GuidePage };

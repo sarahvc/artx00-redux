@@ -57,15 +57,20 @@
     "webpack-merge": "^4.1.1"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bootstrap": "^4.0.0",
     "jquery": "^3.3.1",
     "popper.js": "^1.12.9",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
+    "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.2.0",
+    "react-marquee": "^1.0.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
+    "react-share": "^2.3.1",
     "redux": "^3.7.2",
+    "redux-form": "^7.4.2",
     "redux-promise-middleware": "^5.0.0",
     "redux-thunk": "^2.2.0"
   }
