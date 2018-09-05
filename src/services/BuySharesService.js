@@ -4,7 +4,7 @@ import { app_contract_address, api_service_url } from '../../config/common-paths
 const appContractAbi = require('../../contracts/PoolSharkApp.json').abi;
 
 
-export const placeBid = (bid) => {
+export const buyShares = (shares) => {
     return new Promise((resolve, reject) => {
         const web3 = window.web3;
         if(!web3 || !web3.isConnected() || !web3.currentProvider.isMetaMask) {
@@ -21,7 +21,7 @@ export const placeBid = (bid) => {
             if(error) {
                 reject(error);
             }
-            appContract.createPool(bid.name, Number(bid.rate), Number(bid.deadline), {
+            appContract.createPool(shares.name, Number(shares.rate), Number(shares.deadline), {
                 nonce: txCount,
                 from: account
             }, (err, transactionId) => {
