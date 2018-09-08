@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Account from '../coreComponents/Account';
+import Account from '../core/Account';
 
 // COMPONENT
 

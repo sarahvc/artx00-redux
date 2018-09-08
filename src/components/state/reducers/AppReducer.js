@@ -13,6 +13,8 @@ import { FetchAccountsReducer } from './fetchAccountsWeb3';
 //import { SubscribeReducer } from './SubscribeReducer';
 //import { ChangeUserNameReducer } from './ChangeUserNameReducer';
 //import { WithdrawReducer } from './WithdrawReducer';
+//import { FetchAccountDetailsReducer } from './AccountDetailsReducer';
+//import { FetchAuctionDetailsReducer } from './AuctionDetailsReducer';
 
 // EXPORT APP REDUCER
 
@@ -23,5 +25,7 @@ export const AppReducer = combineReducers({
     //placeBid: PlaceBidReducer,
     //subscribe: SubscribeReducer,
     //changeUserName: ChangeUserNameReducer,
-    //withdraw : WithdrawReducer
+    //withdraw : WithdrawReducer,
+    //fetchAccountDetails : FetchAccountDetailsReducer,
+    //fetchAuctionDetails : FetchAuctionDetailsReducer
 });
