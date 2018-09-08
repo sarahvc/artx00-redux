@@ -46,7 +46,7 @@ class BidPopup extends Component {
                                 : mmaccount
                                     ? <p className='artx-type-twf text-center text-warning'>Please login to your Metamask first</p>
                                     : <div>
-                                        <p className='artx-type-tw text-center artx-gradient-text mb-4'>Bid Genesis shares ealier to earn more dividend! <Info/></p>
+                                        <p className='artx-type-tw text-center artx-gradient-text mb-4'>Bid <i>Genesis</i> shares earlier and earn more dividends! <Info/></p>
                                         <div className='form-group text-center mb-4 '>
                                             <input className='artx-bid-input artx-type-tw text-white mr-2' type='number' id='artxShares'/>
                                             <label className='artx-type-ths text-white' htmlFor='artxShares'>Shares = <span>{amount}</span><img className='artx-eth-s align-baseline ml-2' src={eth} alt='ethereum icon'/></label>
@@ -91,7 +91,7 @@ class BidPopup extends Component {
             case 2:
                 return (
                     <div className='mx-auto artx-bid-content'>
-                        <p className='artx-type-tw artx-gradient-text amt-8 mb-1'>Now, guess the final hammer price of Genesis!</p>
+                        <p className='artx-type-tw artx-gradient-text amt-8 mb-1'>Now, guess the final hammer price of <i>Genesis</i>!</p>
                         <p className='artx-type-tw artx-gradient-text amb-8'>The top 3 most accurate appraisers will win the <b>Appraisal Jackpot</b>!</p>
                         <div className='text-center amb-18'>
                             <label className='artx-type-ths text-white mb-1' htmlFor='artxA'>Your Appraisal</label>
@@ -114,7 +114,7 @@ class BidPopup extends Component {
                     return (
                         <div className='mx-auto artx-bid-content'>
                             <p className='artx-type-tw artx-gradient-text mb-1'>Last step!</p>
-                            <p className='artx-type-tw artx-gradient-text mb-3'>If someone refered you, enter their link to get 10% ETH bonus! <Info/></p>
+                            <p className='artx-type-tw artx-gradient-text mb-3'>If someone refered you, please enter their referral link to receive a 10% ETH bonus!<Info/></p>
                             <div className='mb-3'>
                                 <label className='artx-type-tw text-white' htmlFor='artxRLFI'>Referral Link</label>
                                 <input className='artx-bid-input-s artx-type-et text-white mx-2' id='artxRLFI' aria-describedby='artxRFLIO'/>
@@ -129,15 +129,18 @@ class BidPopup extends Component {
                 return (
                     <div className='mx-auto'>
                         <h3 className='text-center artx-type-ths artx-gradient-text mb-2'>Congratulations!</h3>
-                        <p className='text-center artx-type-et text-white mb-1'>Your bidding has been submitted to blockchain!</p>
-                        <p className='text-center artx-type-et text-white amb-8'>Check your status in <b>Personal Account</b> anytime!</p>
-                        <p className='text-center artx-type-et artx-gradient-text mb-1'>Here is your <b>Personal Refferal Link</b> share to others to win 10% of their bids!<Info/></p>
-                        <p className='text-center artx-type-et artx-gradient-text'>The more you reffered, the more you earn!</p>
+                        <p className='text-center artx-type-et text-white mb-1'>Your bid has been submitted to blockchain.</p>
+                        <p className='text-center artx-type-et text-white amb-8'>Check your <b>Personal Account</b> to see your status anytime!</p>
+                        <p className='text-center artx-type-et artx-gradient-text mb-1'>Here is your <b>Personal Referral Link</b>.<Info/></p>
+                        <p className='text-center artx-type-et artx-gradient-text mb-1'>Share it with friends and win 10% of their bids!</p>
+                        <p className='text-center artx-type-et artx-gradient-text'>The more you refer, the more you earn!</p>
                         <div className='d-flex justify-content-center amb-9'>
                             <ReferLink link='uadsfafadf' account='false'/>
                             <ShareTo/>
                         </div>
-                        <label className='artx-type-et text-white mb-4 text-center' htmlFor='subscribeEmail'>Enter your email to receive ARTX airdrop invitations and auction game updates!</label>
+                        <div className='text-center'>
+                            <label className='artx-type-et text-white mb-4' htmlFor='subscribeEmail'>Enter your email to receive ARTX airdrop invitations and auction game updates!</label>
+                        </div>
                         <div className='artx-subscribe-input mx-auto amb-8'>
                             <input className='artx-type-tw py-3 pl-4 text-white border-0' type='email' id='subscribeEmail' placeholder='Email'/>
                         </div>

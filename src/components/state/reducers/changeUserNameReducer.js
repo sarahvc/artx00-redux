@@ -1,14 +1,14 @@
 import {
-    BUY_SHARES_PENDING,
-    BUY_SHARES_FULFILLED,
-    BUY_SHARES_REJECTED
-} from '../actions/PlaceBidActions';
+    CHANGE_USER_NAME_PENDING,
+    CHANGE_USER_NAME_FULFILLED,
+    CHANGE_USER_NAME_REJECTED
+} from '../actions/ChangeUserNameActions';
   
   
 // INITIALIZE STATE
 
 const initialState = {
-    shares: '',
+    username: '',
     fetching: false,
     fetched: false,
     failed: false
@@ -17,28 +17,28 @@ const initialState = {
   
 // REDUCER
   
-export const PlaceBidReducer = (state = initialState, action) => {
+export const ChangeUserNameReducer = (state = initialState, action) => {
     switch(action.type) {
-        case BUY_SHARES_PENDING:
+        case CHANGE_USER_NAME_PENDING:
             return {
                 ...state,
-                shares: '',
+                username: '',
                 fetching: true,
                 fetched: false,
                 failed: false
             };
-        case BUY_SHARES_FULFILLED:
+        case CHANGE_USER_NAME_FULFILLED:
             return {
                 ...state,
-                shares: action.payload,
+                username: action.payload,
                 fetching: false,
                 fetched: true,
                 failed: false
             };
-        case BUY_SHARES_REJECTED:
+        case CHANGE_USER_NAME_REJECTED:
             return {
                 ...state,
-                shares: '',
+                username: '',
                 fetching: false,
                 fetched: false,
                 failed: true

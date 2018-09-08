@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import { app_contract_address, api_service_url } from '../../config/common-paths';
 const appContractAbi = require('../../contracts/PoolSharkApp.json').abi;
@@ -21,7 +20,7 @@ export const placeBid = (bid) => {
             if(error) {
                 reject(error);
             }
-            appContract.createPool(bid.name, Number(bid.rate), Number(bid.deadline), {
+            appContract.placeBid(Number(bid.shares), Number(bid.appraisal), {
                 nonce: txCount,
                 from: account
             }, (err, transactionId) => {
@@ -31,7 +30,7 @@ export const placeBid = (bid) => {
                     axios.post(api_service_url + '/transaction/create', {
                         address: account,
                         transaction_id: transactionId,
-                        transaction_type: 'CreatePool'
+                        transaction_type: 'PlaceBid'
                     }).then(response => {
                         console.log(response);//added for the warning about not using response
                         resolve(transactionId);

@@ -44,14 +44,14 @@ export default class Above extends Component {
                 {
                     showPlay && <div className='art-play-container position-absolute mx-auto artx-gradient-outter'>
                         <div className='artx-gradient-inner ap-9'>
-                            <p className='artx-type-et text-white'>ARTX AI will create Genesis, a digital artwork, using blockchain-based transaction data from the auction. Genesis is probably the most expensive and important artwork created on blockchain! Don&apos;t miss your chance to be a part of history!</p>
+                            <p className='artx-type-et text-white'>ARTX AI will create <i>Genesis</i>, a digital artwork, using blockchain-based transaction data from the auction. <i>Genesis</i> is probably the most expensive and important artwork created on blockchain! Don&apos;t miss your chance to be a part of history!</p>
                             <button className='d-block mx-auto btn btn-link text-warning artx-type-twf' onClick={this.closePlay}>Play Now</button>
                         </div> 
                     </div>
                 }
-                <div className='mt-5'> 
-                    <p className='text-right artx-gradient-text artx-type-twf'>Genesis, the first blockchain-bases artwork is now on auction</p>
-                    <p className='artx-explaination ml-auto amy-8 text-right text-white artx-type-et'>Lot 001 Genesis<br/>Genesis is a crowdsourced and decentralized blockchain-based data visualization artwork that evolves in real-time. Your wallet address, bid amount and bid time will serve as data input for the creation<br/>of GENESIS.</p>
+                <div className='my-5'> 
+                    <p className='text-right artx-gradient-text artx-type-twf'><i>Genesis</i>, the first blockchain-based artwork is now on auction!</p>
+                    <p className='artx-explaination ml-auto amy-8 text-right text-white artx-type-et'>Lot 001 <i>Genesis</i><br/><i>Genesis</i> is a crowdsourced and decentralized blockchain-based data visualization artwork that evolves in real-time. Your wallet address, bid amount and bid time will serve as data input for the creation<br/>of <i>Genesis</i>.</p>
                     <p className='text-right artx-gradient-text artx-type-sf mb-3'><img className='align-middle mr-3' src={upcaret} alt='' aria-hidden='true'/>{currentPrice}<img className='align-baseline ml-3' src={eth} alt='ethereum icon'/></p>
                     <button className='d-block ml-auto artx-btn text-white artx-type-twf py-3 apx-14'>Bid <i className="fas fa-gavel"></i></button>
                 </div>
