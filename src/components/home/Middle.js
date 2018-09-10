@@ -1,4 +1,5 @@
 import React, { Component }  from 'react';
+import PropTypes from 'prop-types';
 import Marquee from 'react-marquee';
 
 export default class Middle extends Component {
@@ -8,8 +9,12 @@ export default class Middle extends Component {
     render() { 
         return (
             <div className='artx-type-twf text-white mt-5'>
-                <Marquee text="Max appraisal: 43472ETH&nbsp;&nbsp;&nbsp;&nbsp;Average appraisal: 23472ETH&nbsp;&nbsp;&nbsp;&nbsp;Rickyangyang's appraisal: 34059.3423ETH&nbsp;&nbsp;&nbsp;&nbsp;Alvinading's appraisal: 34059.3423ETH" hoverToStop loop/>
+                <Marquee text={this.props.text} hoverToStop loop/>
             </div>
         );
     }
 }
+
+Middle.propTypes = {
+    text: PropTypes.string.isRequired
+};
