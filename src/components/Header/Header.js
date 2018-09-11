@@ -31,6 +31,11 @@ export const Header = () => (
                 </li>
                 <li className="nav-item">
                     <div className="nav-link px-3">
+                        <NavLink to='https://t.me/joinchat/HimWUVCuDboToxV2Q-kOYQ' className='artx-type-twf' activeClassName='font-weight-bold'>Community</NavLink>
+                    </div>
+                </li>
+                <li className="nav-item">
+                    <div className="nav-link px-3">
                         <NavLink to='/zipcodes' className='artx-type-twf' activeClassName='font-weight-bold'>ZIP CODES</NavLink>
                     </div>
                 </li>

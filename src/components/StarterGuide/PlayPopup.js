@@ -14,6 +14,7 @@ export default class PlayPopup extends Component {
             showPlay: true
         };
         this.renderSwitch = this.renderSwitch.bind(this);
+        this.classSwitch = this.classSwitch.bind(this);
         this.close = this.close.bind(this);
         this.nextStep = this.nextStep.bind(this);
     }
@@ -42,11 +43,29 @@ export default class PlayPopup extends Component {
                 return null;
         }
     }
+
+    classSwitch(param) {
+        switch(param) {
+            case 1:
+                return ' artx-play-start-end mx-auto';
+            case 2:
+                return ' artx-play-auction-intro';
+            case 3:
+                return ' artx-play-earnings-intro';
+            case 4:
+                return ' artx-play-timer-intro';
+            case 5:
+                return ' artx-play-start-end mx-auto';
+            default:
+                return null;
+        }
+    }
+
     render () {
         return (
             <div>
                 {
-                    this.state.showPlay && <div className='art-play-container position-absolute mx-auto artx-gradient-outter'>
+                    this.state.showPlay && <div className={'artx-play-container position-absolute artx-gradient-outter'+ this.classSwitch(this.state.step)}>
                         <div className='artx-gradient-inner ap-9'>
                             {this.renderSwitch(this.state.step)}
                         </div> 

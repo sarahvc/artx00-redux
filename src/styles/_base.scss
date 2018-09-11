@@ -76,6 +76,14 @@ body {
     background-size: cover;
 }
 
+// .artx-gradient-bg {
+//     background-image: url('../../styles/assets/bgball.svg'), radial-gradient(circle at 0 100%, #000549, #0e0525);
+//     background-position: 50% 90%, left bottom;
+//     background-attachment: scroll, fixed;
+//     background-repeat: no-repeat;
+//     background-size: auto, cover;
+// }
+
 .artx-dark-bg {
     background-color: #0E0525;
 }
@@ -124,6 +132,15 @@ body {
     border: 0; 
 }
 
+.artx-gradient-border-mockup {
+    border-radius: 5px;
+    background-image: linear-gradient(93deg, #43d7a7, #ad5ef3);
+    padding: 2px;
+}
+
+.artx-gradient-border-mockup-inner {
+    background-color: #000549;
+}
 
 $spacer: 4px !default;
 $spacers: () !default;

@@ -16,7 +16,7 @@ class SubscribeFormComponent extends Component {
                 <div className="form-group text-center">
                     <label className='artx-type-tw artx-gradient-text mb-4' htmlFor='subscribeEmail'>Subcribe to the ARTX email list to get updates on<br/>
                     Decentralism art auctions and ARTX airdrop!</label>
-                    <div className='artx-subscribe-input d-flex justify-content-between mx-auto'>
+                    <div className='artx-subscribe-input artx-gradient-border-mockup d-flex justify-content-between mx-auto'>
                         <Field 
                             name='subemail'
                             component = {SubscribeInput}/>

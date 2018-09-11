@@ -11,9 +11,8 @@ export default class AuctionDetails extends Component {
     }
 
     render() {
-        const jpWidth = {
-            width: parseFloat(this.props.jackpot)/(parseFloat(this.props.jackpot) + parseFloat(this.props.rewards))*100 + '%'
-        };
+        const jpPercent = parseFloat(this.state.jackpot)/(parseFloat(this.state.jackpot) + parseFloat(this.state.rewards))*100 + '%';
+
         return (  
             <div className='mt-5'>
                 <p className='artx-type-twf artx-gradient-text'>Auction Hardcap Remaining <Info/></p>
@@ -26,8 +25,9 @@ export default class AuctionDetails extends Component {
                         <p className='artx-purple artx-type-tw'>Rewards<br/>
                             {this.props.rewards}<img className='artx-purple align-top ml-1' src={ethpurple} alt='ethereum icon'/></p>
                     </div>
-                    <div className='artx-jackpot-percent d-flex w-100'>
-                        <div className='h-100' style={jpWidth}></div>
+                    <div className='artx-jackpot-percent artx-gradient-border-mockup d-flex jutstify-content-between w-100'>
+                        <div className='h-100 artx-gradient-border-mockup-inner' style={{width:`${jpPercent}`}}></div>
+                        <div className='h-100 artx-gradient-border-mockup-inner' style={{width: `calc( 100% - ${jpPercent} - 2px)`}}></div>
                     </div>
                 </div>
                 

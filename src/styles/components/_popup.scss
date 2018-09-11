@@ -1,7 +1,7 @@
 .artx-bid-container  {
     width: 800px;
     z-index: 2;
-    top: 20vh;
+    top: 50px;
     left: 0;
     right: 0;
     border-radius: 20px;
@@ -74,16 +74,33 @@
     max-width: 600px;
 }
 
-.art-play-container {
+.artx-play-container {
     max-width: 520px;
     z-index: 2;
-    top: 30vh;
-    left: 0;
-    right: 0;
     border-radius: 50px;
     padding: 5px;
     .artx-gradient-inner {
         border-radius: 45px;
-
     }
+}
+
+.artx-play-start-end {
+    top: 10rem;
+    left: 0;
+    right: 0;
+}
+
+.artx-play-auction-intro {
+    top: 11rem;
+    right: 0;
+}
+
+.artx-play-earnings-intro {
+    top: 24rem;
+    left: 10rem;
+}
+
+.artx-play-timer-intro {
+    top: 16rem;
+    left: 3rem;
 }

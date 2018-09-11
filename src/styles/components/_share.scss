@@ -1,0 +1,12 @@
+.artx-share-btn {
+    width: 2rem;
+    i {
+        color: white;
+        &:hover, &:focus {
+            background: linear-gradient(98deg, #43d7a7, #ad5ef3);
+	        -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border: 0; 
+        }
+    }
+}

@@ -49,7 +49,7 @@ class BidPopup extends Component {
                                         <p className='artx-type-tw text-center artx-gradient-text mb-4'>Bid <i>Genesis</i> shares earlier and earn more dividends! <Info/></p>
                                         <div className='form-group text-center mb-4 '>
                                             <input className='artx-bid-input artx-type-tw text-white mr-2' type='number' id='artxShares'/>
-                                            <label className='artx-type-ths text-white' htmlFor='artxShares'>Shares = <span>{amount}</span><img className='artx-eth-s align-baseline ml-2' src={eth} alt='ethereum icon'/></label>
+                                            <label className='artx-type-twf text-white' htmlFor='artxShares'>Shares = <span>{amount}</span><img className='artx-eth-s align-baseline ml-2' src={eth} alt='ethereum icon'/></label>
                                         </div>
                                         <div className='artx-shares-btn text-center amb-9'>
                                             <button className="mr-4">
@@ -94,9 +94,9 @@ class BidPopup extends Component {
                         <p className='artx-type-tw artx-gradient-text amt-8 mb-1'>Now, guess the final hammer price of <i>Genesis</i>!</p>
                         <p className='artx-type-tw artx-gradient-text amb-8'>The top 3 most accurate appraisers will win the <b>Appraisal Jackpot</b>!</p>
                         <div className='text-center amb-18'>
-                            <label className='artx-type-ths text-white mb-1' htmlFor='artxA'>Your Appraisal</label>
+                            <label className='artx-type-twf text-white mb-1' htmlFor='artxA'>Your Appraisal</label>
                             <input className='artx-bid-input artx-type-tw text-white ml-2' type='number' id='artxA' aria-describedby='artxAU'/>
-                            <img className='artx-eth-m align-text-bottom ml-2' src={eth} alt='ethereum icon'/>
+                            <img className='artx-eth-s align-text-bottom ml-2' src={eth} alt='ethereum icon'/>
                         </div>
                         <button className="d-block mx-auto artx-btn artx-type-tw text-center text-white py-2 apx-13" type='button' onClick={() => this.setStep(1)}>Next</button>  
                     </div>

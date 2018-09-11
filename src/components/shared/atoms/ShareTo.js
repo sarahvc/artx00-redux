@@ -1,5 +1,5 @@
 import React from 'react';
-import { TwitterShareButton, TelegramShareButton, FacebookShareButton, FacebookIcon, TwitterIcon, TelegramIcon } from 'react-share';
+import { TwitterShareButton, TelegramShareButton, FacebookShareButton } from 'react-share';
 
 const ShareTo = () => {
     const shareUrl = 'http://github.com';
@@ -9,26 +9,20 @@ const ShareTo = () => {
             <FacebookShareButton 
                 url={shareUrl}
                 quote={title}
-                className="mr-2">
-                <FacebookIcon
-                    size={32}
-                    round />
+                className="mr-2 artx-share-btn text-center">
+                <i className="fab fa-facebook-f artx-type-tw"></i>
             </FacebookShareButton> 
             <TwitterShareButton
                 url={shareUrl}
                 quote={title}
-                className="mr-2">
-                <TwitterIcon
-                    size={32}
-                    round />
+                className="mr-2 artx-share-btn text-center">
+                <i className="fab fa-twitter artx-type-tw"></i>
             </TwitterShareButton>
             <TelegramShareButton
                 url={shareUrl}
                 quote={title}
-                className="">
-                <TelegramIcon
-                    size={32}
-                    round />
+                className="artx-share-btn text-center">
+                <i className="fab fa-telegram-plane artx-type-tw"></i>
             </TelegramShareButton>
         </div>
     );
