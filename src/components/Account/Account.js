@@ -128,4 +128,4 @@ const hoc = connect(mapStateToProps, mapDispatchToProps)(Account);
 
 // EXPORT COMPONENT
 
-export { hoc as CreatePool };
+export { hoc as Account };

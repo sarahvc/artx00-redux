@@ -1,48 +1,41 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import { reduxForm } from 'redux-form';
+
 import { Field } from 'redux-form';
-import Text from './Text';
+import SubscribeInput from './SubscribeInput';
 
-const required = value => (value ? undefined : 'Required');
-export const moreThanZero = value => (
-    value && 0 >= value ? 'Value has to be more than 0' : undefined
-);
-export const isDecimal = value => {
-    return value && !/^\d+(\.\d{1,4})?$/i.test(value) ? 'Has to be a decimal number, with at most 4 decimal points' : undefined;
-};
-
-const mustBeDecimal = value =>
-    value && parseFloat(value) === 'NaN'
-        ? 'Has to be a decimal number, with at most 4 decimal points'
-        : undefined;
-
-export const DepositFormComponent = ({ handleSubmit, onSubmit }) => {
-    return (
-        <div className="m-0 m-auto">
-            <form className="create-pool-form" onSubmit={handleSubmit(onSubmit)}>
-                <Field
-                    name="amount"
-                    label="Enter ETH amount you wish to deposit"
-                    type="text"
-                    validate={[required, isDecimal, moreThanZero]}
-                    warn={mustBeDecimal}
-                    component={Text}
-                />
-                <div className="mt-2">
-                    <button
-                        type="submit"
-                        className="btn btn-dark-blue center d-block m-auto">
-                        Deposit ETH
-                    </button>
+class SubscribeFormComponent extends Component {
+    constructor(props) {
+        super(props);
+    }
+  
+    render() {
+        return (
+            <form className='artx-subscribe-form mx-auto' onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
+                <div className="form-group text-center">
+                    <label className='artx-type-tw artx-gradient-text mb-4' htmlFor='subscribeEmail'>Subcribe to the ARTX email list to get updates on<br/>
+                    Decentralism art auctions and ARTX airdrop!</label>
+                    <div className='artx-subscribe-input d-flex justify-content-between mx-auto'>
+                        <Field 
+                            name='subemail'
+                            component = {SubscribeInput}/>
+                        <button className='text-white font-weight-bold border-0 h-100 py-3 px-4' type="submit">JOIN NOW</button>
+                    </div>
                 </div>
             </form>
-        </div>
-    );
+        );
+    }
+}
+
+SubscribeFormComponent.propTypes = {
+    handleSubmit: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired
 };
 
-DepositFormComponent.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired
+const formConfiguration = {
+    form: 'subscribe-form'
 };
-
-export default DepositFormComponent;
+const hoc = reduxForm(formConfiguration)(SubscribeFormComponent);
+  
+export { hoc as SubscribeFormComponent };

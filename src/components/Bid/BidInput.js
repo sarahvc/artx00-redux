@@ -1,27 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Text = ({ label, input, type, meta: { touched, error, warning } }) => {
+export const BidInput = ({ input, type, id }) => {
     return (
-        <div className="mt-1 mv4 w-100">
+        <div>
             <input
                 {...input}
-                placeholder={label}
                 type={type}
-                className="w-100 form-input"
+                id={id}
+                className="artx-bid-input artx-type-et text-white mr-2"
             />
-            {touched &&
-        ((error && <span className="text-danger">{error}</span>) ||
-            (warning && <span className="text-muted">{warning}</span>))}
         </div>
     );
 };
 
-Text.propTypes = {
-    label: PropTypes.string.isRequired,
+BidInput.propTypes = {
     input: PropTypes.object.isRequired,
-    type: PropTypes.string.isRequired,
-    meta: PropTypes.object
+    id: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired
 };
 
-export default Text;
+export default BidInput;

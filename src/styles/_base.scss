@@ -34,8 +34,8 @@ body {
     @include font(0.75, 1);
 }
 
-.artx-type-ft {
-    @include font(0.875, 1.125);
+.artx-type-st {
+    @include font(1, 1.25);
 }
 
 .artx-type-et {
@@ -50,20 +50,16 @@ body {
     @include font(1.5, 1.875);
 }
 
-.artx-type-tws {
-    @include font(1.625, 2);
-}
-
 .artx-type-ths {
     @include font(2.25, 3.125);
 }
 
-.artx-type-sf {
-    @include font(4, 5.375);
+.artx-type-fty {
+    @include font(2.5, 3.375);
 }
 
-.artx-type-st {
-    @include font(4.5, 6.125);
+.artx-type-fs {
+    @include font(3.5, 5.375);
 }
 
 .artx-type-sourcecode {

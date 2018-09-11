@@ -1,12 +1,46 @@
 import React, { Component } from 'react';
+import Start from './Start';
+import AuctionIntro from './AuctionIntro';
+import EarningsIntro from './EarningsIntro';
+import TimerIntro from './TimerIntro';
+import Play from './Play';
 
 export default class PlayPopup extends Component {
     constructor(props) {
         super(props);
     
         this.state = {
+            step: 1,
             showPlay: true
         };
+        this.renderSwitch = this.renderSwitch.bind(this);
+        this.close = this.close.bind(this);
+        this.nextStep = this.nextStep.bind(this);
+    }
+
+    close() {
+        this.setState({showPlay: false});
+    }
+
+    nextStep() {
+        this.setState(prevState => ({step: prevState.step + 1}));
+    }
+
+    renderSwitch(param) {
+        switch(param) {
+            case 1:
+                return (<div><Start skip={this.close} start={this.nextStep}/></div>);
+            case 2:
+                return (<div><AuctionIntro next={this.nextStep}/></div>);
+            case 3:
+                return (<div><EarningsIntro next={this.nextStep}/></div>);
+            case 4:
+                return (<div><TimerIntro next={this.nextStep}/></div>);
+            case 5:
+                return (<div><Play play={this.close}/></div>);
+            default:
+                return null;
+        }
     }
     render () {
         return (
@@ -14,8 +48,7 @@ export default class PlayPopup extends Component {
                 {
                     this.state.showPlay && <div className='art-play-container position-absolute mx-auto artx-gradient-outter'>
                         <div className='artx-gradient-inner ap-9'>
-                            <p className='artx-type-et text-white'>ARTX AI will create <i>Genesis</i>, a digital artwork, using blockchain-based transaction data from the auction. <i>Genesis</i> is probably the most expensive and important artwork created on blockchain! Don&apos;t miss your chance to be a part of history!</p>
-                            <button className='d-block mx-auto btn btn-link text-warning artx-type-twf' onClick={()=>this.setState({showPlay: false})}>Play Now</button>
+                            {this.renderSwitch(this.state.step)}
                         </div> 
                     </div>
                 } 

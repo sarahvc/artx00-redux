@@ -1,36 +1,50 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { withdraw } from '../state/actions/WithdrawActions';
 
 import WithdrawFormComponent from './WithdrawFormComponent';
 
-class PoolWithdrawForm extends Component {
+class Withdraw extends Component {
     constructor(props) {
         super(props);
+        this.onWithdrawSubmit = this.onWithdrawSubmit.bind(this);
+    }
+
+    onWithdrawSubmit() {
+        this.props.withdraw(this.props.publicWalletAddress);
     }
 
     render() {
         return (
-            <div className="border-bottom">
-                <h3 className="text-center dark-blue-text">Congratulations, you are a Shark!</h3>
-                <h3 className="text-center dark-blue-text">Withdraw Ether From the pool</h3>
-                <WithdrawFormComponent
-                    onSubmit={this.props.onSubmit}
-                    handleSubmit={this.props.handleSubmit}
-                />
-            </div>
+            <WithdrawFormComponent onSubmit={this.onSubmit} />
         );
     }
 }
 
-PoolWithdrawForm.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-    handleSubmit: PropTypes.func.isRequired
+Withdraw.propTypes = {
+    withdraw: PropTypes.func.isRequired,
+    publicWalletAddress: PropTypes.string.isRequired,
+    failed: PropTypes.bool.isRequired,
+    fetching: PropTypes.bool.isRequired,
+    fetched: PropTypes.bool.isRequired
+};
+  
+const mapStateToProps = state => {
+    const withdrawState = state.withdraw;
+    const withdrawFetched = withdrawState.fetched;
+    const withdraw = withdrawState.transaction;
+
+    return { withdrawFetched, withdraw };
 };
 
-const formConfiguration = {
-    form: 'withdraw-pool-form'
-};
-const hoc = reduxForm(formConfiguration)(PoolWithdrawForm);
+const mapDispatchToProps = dispatch => (bindActionCreators({ withdraw }, dispatch)
+);
 
-export { hoc as PoolWithdrawForm };
+const hoc = connect(mapStateToProps, mapDispatchToProps)(withdraw);
+
+// EXPORT COMPONENT
+
+export { hoc as Withdraw };

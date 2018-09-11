@@ -7,7 +7,7 @@ const GuidePage = () => (
     <div className='artx-gradient-bg'>
         <main className='pt-5 mt-5'>
             <div className='container'>
-                <h1 className='artx-type-st artx-gradient-text text-center amt-18'>DArt Player Guide</h1>
+                <h1 className='artx-type-fs artx-gradient-text text-center amt-18'>DArt Player Guide</h1>
                 <h2 className='artx-type-ths artx-gradient-text amt-18'>Summary</h2>
                 <p className='artx-type-twf text-white font-weight-bold mt-3'>This is the first decentralized art creation and auction project on the Ethereum blockchain, in which a DArt, <i>Genesis</i>, is created and auctioned simultaneously.</p>
                 <ul className='artx-type-twf text-white mt-3'>
