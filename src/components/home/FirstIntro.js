@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import PlayPopup from './StarterGuide/PlayPopup';
+import PlayPopup from '../StarterGuide/PlayPopup';
 import upcaret from '../../images/upcaret.svg';
 import eth from '../../images/ethereum.svg';
 

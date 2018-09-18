@@ -14,9 +14,9 @@ export const subsribe = (email) => {
             reject('No account!');
         }
 
-        axios.post(api_service_url + '/account/update', {
-            address: account,
-            userEmail: email
+        axios.post(api_service_url + '/register', {
+            addr: account,
+            email: email
         }).then(response => {
             console.log(response);//added for the warning about not using response
             resolve(email);

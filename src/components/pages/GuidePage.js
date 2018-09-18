@@ -1,6 +1,6 @@
 import React from 'react';
 import Quote from '../shared/atoms/Quote';
-import Subscribe from '../shared/atoms/Subscribe';
+import { Subscribe } from '../Subscribe/Subscribe';
 import Footer from '../shared/atoms/Footer';
 
 const GuidePage = () => (

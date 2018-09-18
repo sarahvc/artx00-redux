@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Account from '../Account/Account';
+//import Account from '../Account/Account';
 
 // COMPONENT
 
@@ -41,6 +41,6 @@ export const Header = () => (
                 </li>
             </ul>
         </div>
-        <Account/>
+        <button className='border-0 bg-transparent' type='button'><i className="far fa-user artx-gradient-text artx-type-twf"></i><span className='artx-gradient-text artx-type-twf d-none d-lg-inline'> Personal Account</span></button>
     </nav>
 );

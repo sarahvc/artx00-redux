@@ -36,7 +36,7 @@ Subscribe.propTypes = {
 const mapStateToProps = state => {
     const subscribeState = state.subscribe;
     const subscribeFetched = subscribeState.fetched;
-    const subscribe = subscribeState.useremail;
+    const subscribe = subscribeState.email;
 
     return { subscribeFetched, subscribe };
 };

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Quote from '../shared/atoms/Quote';
-import Subscribe from '../shared/atoms/Subscribe';
+import { Subscribe } from '../Subscribe/Subscribe';
 import Footer from '../shared/atoms/Footer';
 import studio from '../../images/artxstudio.png';
 import creating from '../../images/creatingasmining.png';
