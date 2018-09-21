@@ -1,6 +1,6 @@
 import React from 'react';
 import Quote from '../shared/atoms/Quote';
-import { Subscribe } from '../Subscribe/Subscribe';
+import { SubscribeBottom } from '../Subscribe/SubscribeBottom';
 import Footer from '../shared/atoms/Footer';
 
 const GuidePage = () => (
@@ -34,7 +34,7 @@ const GuidePage = () => (
                 </ul> 
             </div>
             <Quote/>
-            <Subscribe/>
+            <SubscribeBottom/>
         </main>
         <Footer/>
     </div>

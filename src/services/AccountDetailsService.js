@@ -13,7 +13,7 @@ export const getAccountDetails = () => {
             reject('No account!');
         }
 
-        axios.get(api_service_url + '/auction/' + account)
+        axios.get(api_service_url + '/register/' + account)
             .then( response => {
                 resolve(response.data);
             }).catch((err) => {

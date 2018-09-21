@@ -32,5 +32,5 @@ export default class FirstIntro extends Component {
 }
 
 FirstIntro.propTypes = {
-    currentPrice: PropTypes.number.isRequired
+    currentPrice: PropTypes.string.isRequired
 };

@@ -13,7 +13,7 @@ import { FetchZipCodesReducer } from './FetchZipCodesReducer';
 import { SubscribeReducer } from './SubscribeReducer';
 //import { ChangeUserNameReducer } from './ChangeUserNameReducer';
 //import { WithdrawReducer } from './WithdrawReducer';
-//import { FetchAccountDetailsReducer } from './AccountDetailsReducer';
+import { FetchAccountDetailsReducer } from './AccountDetailsReducer';
 //import { FetchAuctionDetailsReducer } from './AuctionDetailsReducer';
 
 // EXPORT APP REDUCER
@@ -23,9 +23,8 @@ export const AppReducer = combineReducers({
     //accounts: FetchAccountsReducer,
     form: formReducer,
     //placeBid: PlaceBidReducer,
-    subscribe: SubscribeReducer,
+    subscribeTo: SubscribeReducer,
     //changeUserName: ChangeUserNameReducer,
     //withdraw : WithdrawReducer,
-    //fetchAccountDetails : FetchAccountDetailsReducer,
-    //fetchAuctionDetails : FetchAuctionDetailsReducer
+    AccountDetails : FetchAccountDetailsReducer
 });

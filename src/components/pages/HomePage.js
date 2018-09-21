@@ -12,7 +12,7 @@ import FirstIntro from '../home/FirstIntro';
 import AuctionDetails from '../home/AuctionDetails';
 import Middle from '../home/Middle';
 import SecondIntro from '../home/SecondIntro';
-import { Subscribe } from '../Subscribe/Subscribe';
+import { SubscribeBottom } from '../Subscribe/SubscribeBottom';
 import Footer from '../shared/atoms/Footer';
 
 // COMPONENT
@@ -38,9 +38,9 @@ class HomePage extends Component {
                     <FirstIntro currentPrice={this.state.currentPrice}/>
                     <button className='d-block ml-auto artx-btn text-white artx-type-twf py-3 apx-14'>Bid <i className="fas fa-gavel"></i></button>
                     <AuctionDetails diffAppraisal={this.state.diffAppraisal} jackpot={this.state.jackpot} rewards={this.state.rewards}/>
-                    <Middle/>
+                    <Middle text={'Note how in code like this errors from the first then are completely swallowed.'}/>
                     <SecondIntro/>
-                    <Subscribe/>
+                    <SubscribeBottom bottom/>
                 </main>
                 <Footer/>
             </div>
@@ -74,4 +74,4 @@ const hoc = connect(mapStateToProps, mapDispatchToProps)(HomePage);
 
 export { hoc as HomePage };
 */
-export default { HomePage };
+export { HomePage };

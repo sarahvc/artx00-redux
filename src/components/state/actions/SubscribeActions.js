@@ -1,15 +1,15 @@
-import { subsribe } from '../../../services/SubscribeService';
+import { subscribeToARTX } from '../../../services/SubscribeService';
 
 export const SUBSCRIBE = 'SUBSCRIBE';
 export const SUBSCRIBE_PENDING = 'SUBSCRIBE_PENDING';
 export const SUBSCRIBE_FULFILLED = 'SUBSCRIBE_FULFILLED';
 export const SUBSCRIBE_REJECTED = 'SUBSCRIBE_REJECTED';
 
-const subsribeAction = (email) => ({
+const subscribeAction = (email) => ({
     type: SUBSCRIBE,
-    payload: subsribe(email)
+    payload: subscribeToARTX(email)
 });
 
 // EXPORT ACTIONS
 
-export { subsribeAction as subsribe };
+export { subscribeAction as subscribeToARTX };

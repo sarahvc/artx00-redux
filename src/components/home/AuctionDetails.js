@@ -11,7 +11,7 @@ export default class AuctionDetails extends Component {
     }
 
     render() {
-        const jpPercent = parseFloat(this.state.jackpot)/(parseFloat(this.state.jackpot) + parseFloat(this.state.rewards))*100 + '%';
+        const jpPercent = parseFloat(this.props.jackpot)/(parseFloat(this.props.jackpot) + parseFloat(this.props.rewards))*100 + '%';
 
         return (  
             <div className='mt-5'>
@@ -37,7 +37,7 @@ export default class AuctionDetails extends Component {
 }
 
 AuctionDetails.propTypes = {
-    diffAppraisal: PropTypes.number.isRequired,
-    jackpot: PropTypes.number.isRequired,
-    rewards: PropTypes.number.isRequired
+    diffAppraisal: PropTypes.string.isRequired,
+    jackpot: PropTypes.string.isRequired,
+    rewards: PropTypes.string.isRequired
 };

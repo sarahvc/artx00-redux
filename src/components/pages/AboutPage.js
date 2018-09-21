@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Quote from '../shared/atoms/Quote';
-import { Subscribe } from '../Subscribe/Subscribe';
+import { SubscribeBottom } from '../Subscribe/SubscribeBottom';
 import Footer from '../shared/atoms/Footer';
 import studio from '../../images/artxstudio.png';
 import creating from '../../images/creatingasmining.png';
@@ -72,7 +72,7 @@ const AboutPage = () => (
                 </div>
             </div>
             <Quote/>
-            <Subscribe/>
+            <SubscribeBottom/>
         </main>
         <Footer/>
     </div>

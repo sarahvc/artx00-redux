@@ -2,18 +2,17 @@ import React, { Component }  from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import isEmpty from 'lodash/isEmpty';
 
 import { fetchAccountDetails } from '../state/actions/AccountDetailsActions';
-import { SubscribeAccount } from '../Subscribe/SubscribeAccount';
+import { subscribe } from '../state/actions/SubscribeActions';
 
 import AccountTR from './AccountTR';
 import ReferLink from '../shared/atoms/ReferLink';
 import ShareTo from '../shared/atoms/ShareTo';
-//import Withdraw from '../home/Withdraw';
+import Withdraw from '../home/Withdraw';
 
 
-class Account extends Component {
+export default class Account extends Component {
     constructor(props) {
         super(props);
   
@@ -22,35 +21,17 @@ class Account extends Component {
             isOpen: false
         };
 
-        this.changeEmail = this.changeEmail.bind(this);
+        this.changeName = this.changeName.bind(this);
     }
 
     changeEmail() {
-        this.setState(prevState => ({editEmail: !prevState.editEmail}));
-    }
-
-    componentDidMount() {
-        this.props.fetchAccountDetails();
+        this.setState(prevState => ({editEmail: !prevState.editName}));
     }
 
     render() {
         const {editEmail, isOpen} = this.state;
-
-        const web3 = window.web3;
-        const account = web3.eth.accounts[0];
-        let failed = false;
-        let error = null;
-    
-        if (!web3) {
-            failed = true;
-            error = <p className='text-white'>Error</p>;
-        }
-    
-        if (!failed && isEmpty(web3.eth.accounts)) {
-            failed = true;
-            error = <p className='text-white'>No Account</p>;
-        }
-
+        const availForWithdraw = this.props.details.totalEarnings - this.props.details.withdrawn;
+        const walletAddr = this.props.accounts[0];
         return (
             <div>
                 <button className='border-0 bg-transparent' type='button' onClick={() => this.setState({isOpen: true})}><i className="far fa-user artx-gradient-text artx-type-twf"></i><span className='artx-gradient-text artx-type-twf d-none d-lg-inline'> Personal Account</span></button>
@@ -66,27 +47,26 @@ class Account extends Component {
                                         <div className="form-group mt-3">
                                             <label  htmlFor="artxWA" className="artx-type-twf text-white">Wallet Address</label>
                                             <div className="border-bottom">
-                                                <input type="text" readOnly className="artx-type-tw text-white border-0 w-100" id="artxWAd" value={account}/>
+                                                <input type="text" readOnly className="artx-type-tw text-white border-0 w-100" id="artxWAd" value={walletAddr}/>
                                             </div>
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="artxAE" className="artx-type-twf text-white artx-yellow-dot">Email</label>
+                                            <label htmlFor="artxAN" className="artx-type-twf text-white artx-yellow-dot">Email</label>
                                             { editEmail
-                                                ? <SubscribeAccount/>
+                                                ? <div className="d-flex justify-content-between border-bottom">
+                                                    <input type="text" className="artx-type-tw text-white border-0 w-100" id="artxAN" defaultValue={this.props.details.uEmail}/>
+                                                    <button className="artx-btn text-white p-2" type='submit' onClick={this.changeEmail}>Submit</button>
+                                                </div>
                                                 : <div className="d-flex justify-content-between border-bottom">
-                                                    <input type="text" readOnly  className="artx-type-tw text-white border-0 w-100" id="artxAN" value={this.props.details.email}/>
+                                                    <input type="text" readOnly  className="artx-type-tw text-white border-0 w-100" id="artxAN" value={this.props.details.uEmail}/>
                                                     <button className="artx-icon-btn" onClick={this.changeEmail} aria-label='edit account name' type='button'>
                                                         <i className="far fa-edit artx-type-twf artx-gradient-text"></i>
                                                     </button>
                                                 </div>}
                                         </div>
-                                        <div className="mt-3">
+                                        <div className="form-group mt-3">
                                             <label htmlFor="artxRL" className="artx-type-twf text-white">Personal Referral Link</label>
-                                            {
-                                                this.props.details.code
-                                                    ?<ReferLink link={this.props.details.code} account={true}/>
-                                                    :<p className='text-white'>no code yet</p>
-                                            }
+                                            <ReferLink link={this.props.details.referralLink} account={true}/>
                                         </div>
                                     </form>
                                     <div className='d-flex mt-4'>
@@ -101,22 +81,19 @@ class Account extends Component {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <AccountTR label='Bid' content={'1234'}/>
-                                            <AccountTR label='Shares' content={'1234'}/>
-                                            <AccountTR label='Referral' content={'1234'}/>
-                                            <AccountTR label='Total Earnings' content={'1234'}/>
-                                            <AccountTR label='Withdrawn' content={'1234'}/>
-                                            <AccountTR label='Available for withdraw' content={'1234'}/>
+                                            <AccountTR label='Bid' content={this.props.details.bid}/>
+                                            <AccountTR label='Shares' content={this.props.details.shares}/>
+                                            <AccountTR label='Referral' content={this.props.details.referEarnings}/>
+                                            <AccountTR label='Total Earnings' content={this.props.details.totalEarnings}/>
+                                            <AccountTR label='Withdrawn' content={this.props.details.withdrawn}/>
+                                            <AccountTR label='Available for withdraw' content={availForWithdraw}/>
                                         </tbody>
                                     </table>
-                                    <button type='button'>Withdraw</button>
+                                    <Withdraw/>
                                 </div>
                             </div>
                         </div>
                         : null
-                }
-                {
-                    failed && error
                 }
             </div>
         );
@@ -125,20 +102,26 @@ class Account extends Component {
 
 Account.propTypes = {
     fetchAccountDetails: PropTypes.func.isRequired,
+    subscribe: PropTypes.func.isRequired,
+    accounts_fetched: PropTypes.bool.isRequired,
+    account_selected: PropTypes.string,
+    accounts: PropTypes.array,
     failed: PropTypes.bool.isRequired,
     fetching: PropTypes.bool.isRequired,
     fetched: PropTypes.bool.isRequired,
-    details: PropTypes.object
+    details: PropTypes.object,
+    email: PropTypes.string.isRequired
 };
   
 const mapStateToProps = state => {
+    const { accounts, accounts_fetched, account_selected } = state.accounts;
     const { failed, fetching, fetched, details } = state.AccountDetails;
+    const email = state.subscribe;
 
-    return { failed, fetching, fetched, details};
+    return { accounts, accounts_fetched, account_selected, failed, fetching, fetched, details, email };
 };
 
-const mapDispatchToProps = dispatch => (
-    bindActionCreators({ fetchAccountDetails }, dispatch)
+const mapDispatchToProps = dispatch => (bindActionCreators({ fetchAccountDetails, subscribe }, dispatch)
 );
 
 const hoc = connect(mapStateToProps, mapDispatchToProps)(Account);
