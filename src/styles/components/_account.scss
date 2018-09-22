@@ -23,6 +23,7 @@
     }
     max-height: calc(100vh - 55px);
     overflow: scroll;
+    transition: height 0.5s ease-out;
 }
 
 .artx-yellow-dot::after {
