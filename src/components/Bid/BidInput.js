@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const BidInput = ({ input, type, id }) => {
+export const BidInput = ({ input }) => {
     return (
         <div>
             <input
                 {...input}
-                type={type}
-                id={id}
+                type='number'
                 className="artx-bid-input artx-type-et text-white mr-2"
             />
         </div>
@@ -15,9 +14,7 @@ export const BidInput = ({ input, type, id }) => {
 };
 
 BidInput.propTypes = {
-    input: PropTypes.object.isRequired,
-    id: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired
+    input: PropTypes.object.isRequired
 };
 
 export default BidInput;

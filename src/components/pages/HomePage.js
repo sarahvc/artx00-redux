@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 //import { fetchAuctionDetails } from '../state/actions/AuctionDetailsActions';
 
 import FirstIntro from '../home/FirstIntro';
-//import { BidPopup } from '../Bid/BidPopup';
+import { BidPopup } from '../Bid/BidPopup';
 import AuctionDetails from '../home/AuctionDetails';
 import Middle from '../home/Middle';
 import SecondIntro from '../home/SecondIntro';
@@ -36,11 +36,11 @@ class HomePage extends Component {
             <div className='artx-gradient-bg'>
                 <main className='container pt-5 mt-5'>
                     <FirstIntro currentPrice={this.state.currentPrice}/>
-                    <button className='d-block ml-auto artx-btn text-white artx-type-twf py-3 apx-14'>Bid <i className="fas fa-gavel"></i></button>
+                    <BidPopup/>
                     <AuctionDetails diffAppraisal={this.state.diffAppraisal} jackpot={this.state.jackpot} rewards={this.state.rewards}/>
                     <Middle text={'Note how in code like this errors from the first then are completely swallowed.'}/>
                     <SecondIntro/>
-                    <SubscribeBottom bottom/>
+                    <SubscribeBottom/>
                 </main>
                 <Footer/>
             </div>

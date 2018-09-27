@@ -9,7 +9,7 @@ import { reducer as formReducer } from 'redux-form';
 import { FetchZipCodesReducer } from './FetchZipCodesReducer';
 
 //import { FetchAccountsReducer } from './fetchAccountsWeb3';
-//import { PlaceBidReducer } from './PlaceBidReducer';
+import { PlaceBidReducer } from './PlaceBidReducer';
 import { SubscribeReducer } from './SubscribeReducer';
 //import { ChangeUserNameReducer } from './ChangeUserNameReducer';
 //import { WithdrawReducer } from './WithdrawReducer';
@@ -22,7 +22,7 @@ export const AppReducer = combineReducers({
     zipCodes: FetchZipCodesReducer,
     //accounts: FetchAccountsReducer,
     form: formReducer,
-    //placeBid: PlaceBidReducer,
+    placeBidTo: PlaceBidReducer,
     subscribeTo: SubscribeReducer,
     //changeUserName: ChangeUserNameReducer,
     //withdraw : WithdrawReducer,
