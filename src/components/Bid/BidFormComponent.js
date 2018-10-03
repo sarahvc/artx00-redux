@@ -18,9 +18,7 @@ class BidFormComponent extends Component {
                     name='keys'
                     component = {BidInput}/>
                 <p className='text-white'>eth</p>
-                <Field 
-                    name='eth'
-                    component = {BidInput}/>
+                <p className='text-white'>{this.props.buyprice}</p>
                 <p className='text-white'>name appraisal</p>
                 <Field 
                     name='appraisal'
@@ -33,7 +31,8 @@ class BidFormComponent extends Component {
 
 BidFormComponent.propTypes = {
     handleSubmit: PropTypes.func.isRequired,
-    onSubmit: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired,
+    buyprice: PropTypes.string.isRequired
 };
 
 const formConfiguration = {

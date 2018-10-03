@@ -1,13 +1,14 @@
 //import axios from 'axios';
-import { app_contract_address } from '../../config/common-paths';
-const appContractAbi = require('../../contracts/TestToken.json').abi;
+//import { app_contract_address } from '../../config/common-paths';
+//const appContractAbi = require('../../contracts/TestToken.json').abi;
 
 
 export const placeBid = (bid) => {
-    const web3 = window.web3;
-    const appContract = web3.eth.contract(appContractAbi).at(app_contract_address);
-    const account = web3.eth.accounts[0];
-    appContract.endTxNew(account, bid.eth, bid.keys, bid.appraisal);
+    //const web3 = window.web3;
+    //const appContract = web3.eth.contract(appContractAbi).at(app_contract_address);
+    //const account = web3.eth.accounts[0];
+    console.log( 'eth'+ bid.eth+ 'keys'+ bid.keys+ 'appr'+ bid.appraisal);
+    //appContract.buyXidNew(account, Number(bid.keys));
     /*
     //return new Promise((resolve, reject) => {
         const web3 = window.web3;

@@ -15,6 +15,7 @@ import { SubscribeReducer } from './SubscribeReducer';
 //import { WithdrawReducer } from './WithdrawReducer';
 import { FetchAccountDetailsReducer } from './AccountDetailsReducer';
 //import { FetchAuctionDetailsReducer } from './AuctionDetailsReducer';
+import { FetchAuctionPriceReducer } from './AuctionPriceReducer';
 
 // EXPORT APP REDUCER
 
@@ -26,5 +27,6 @@ export const AppReducer = combineReducers({
     subscribeTo: SubscribeReducer,
     //changeUserName: ChangeUserNameReducer,
     //withdraw : WithdrawReducer,
-    AccountDetails : FetchAccountDetailsReducer
+    AccountDetails : FetchAccountDetailsReducer,
+    AuctionPrice : FetchAuctionPriceReducer
 });

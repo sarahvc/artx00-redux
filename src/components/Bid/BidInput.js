@@ -8,6 +8,7 @@ export const BidInput = ({ input }) => {
                 {...input}
                 type='number'
                 className="artx-bid-input artx-type-et text-white mr-2"
+                required
             />
         </div>
     );

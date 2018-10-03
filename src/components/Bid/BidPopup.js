@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import { placeBid } from '../state/actions/PlaceBidActions';
 import { BidFormComponent } from './BidFormComponent';
+import { fetchAuctionPrice } from '../state/actions/AuctionPriceActions';
 
 class BidPopup extends Component {
     constructor(props) {
@@ -21,6 +22,14 @@ class BidPopup extends Component {
         this.props.placeBid(values);
     }
 
+    componentDidMount() {
+        this.props.fetchAuctionPrice();
+    }
+
+    componentWillUnmount() {
+        this.props.fetchAuctionPrice();
+    }
+
     render() {
         return (
             <div>
@@ -28,7 +37,7 @@ class BidPopup extends Component {
                 { this.state.isOpen
                     ? <div className='artx-bid-container position-absolute artx-gradient-outter'>
                         <div className='artx-gradient-inner pt-4 apb-14 w-100'>
-                            <BidFormComponent onSubmit={this.onSubmit}/>
+                            <BidFormComponent onSubmit={this.onSubmit} buyprice={this.props.price + ''}/>
                         </div>
                     </div>
                     : null}
@@ -40,19 +49,27 @@ class BidPopup extends Component {
 BidPopup.propTypes = {
     placeBid: PropTypes.func.isRequired,
     bidPlaced: PropTypes.bool.isRequired,
-    bid: PropTypes.string.isRequired
+
+    fetchAuctionPrice: PropTypes.func.isRequired,
+    failed: PropTypes.bool.isRequired,
+    fetching: PropTypes.bool.isRequired,
+    fetched: PropTypes.bool.isRequired,
+    price: PropTypes.number.isRequired,
+
+    bid: PropTypes.string
 };
 
 const mapStateToProps = state => {
     const bidState = state.placeBidTo;
     const bidPlaced = bidState.fetched;
     const bid = bidState.bid;
+    const { failed, fetching, fetched, price } = state.AuctionPrice;
   
-    return { bidPlaced, bid };
+    return { bidPlaced, bid, failed, fetching, fetched, price };
 };
   
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ placeBid }, dispatch)
+    bindActionCreators({ placeBid, fetchAuctionPrice }, dispatch)
 );
   
 const hoc = connect(mapStateToProps, mapDispatchToProps)(BidPopup);
