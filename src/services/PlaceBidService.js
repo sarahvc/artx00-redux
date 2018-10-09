@@ -1,6 +1,6 @@
 //import axios from 'axios';
 //import { app_contract_address } from '../../config/common-paths';
-//const appContractAbi = require('../../contracts/TestToken.json').abi;
+//const appContractAbi = require('../../contracts/Decentralism.json').abi;
 
 
 export const placeBid = (bid) => {
