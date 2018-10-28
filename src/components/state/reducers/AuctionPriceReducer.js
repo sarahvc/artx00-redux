@@ -20,7 +20,7 @@ export const FetchAuctionPriceReducer = (state = initialState, action) => {
         case FETCH_AUCTION_PRICE_FULFILLED:
             return {
                 ...state,
-                details: action.payload,
+                price: action.payload,
                 fetching: false,
                 fetched: true,
                 failed: false

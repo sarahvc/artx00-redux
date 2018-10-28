@@ -16,10 +16,16 @@ class BidPopup extends Component {
         };
 
         this.onSubmit = this.onSubmit.bind(this);
+        this.openBid = this.openBid.bind(this);
     }
 
     onSubmit(values) {
         this.props.placeBid(values);
+    }
+
+    openBid(){
+        this.props.fetchAuctionPrice();
+        this.setState({isOpen: true});
     }
 
     componentDidMount() {
@@ -33,11 +39,14 @@ class BidPopup extends Component {
     render() {
         return (
             <div>
-                <button className='d-block ml-auto artx-btn text-white artx-type-twf py-3 apx-14' onClick={() => this.setState({isOpen: true})}>Bid <i className="fas fa-gavel"></i></button>
+                <button className='d-block ml-auto artx-btn text-white artx-type-twf py-3 apx-14' onClick={this.openBid}>Bid <i className="fas fa-gavel"></i></button>
                 { this.state.isOpen
                     ? <div className='artx-bid-container position-absolute artx-gradient-outter'>
                         <div className='artx-gradient-inner pt-4 apb-14 w-100'>
                             <BidFormComponent onSubmit={this.onSubmit} buyprice={this.props.price + ''}/>
+                            <p className='text-white'>{this.props.failed+''}</p>
+                            <p className='text-white'>{this.props.fetching+''}</p>
+                            <p className='text-white'>{this.props.fetched+''}</p>
                         </div>
                     </div>
                     : null}
@@ -63,7 +72,12 @@ const mapStateToProps = state => {
     const bidState = state.placeBidTo;
     const bidPlaced = bidState.fetched;
     const bid = bidState.bid;
-    const { failed, fetching, fetched, price } = state.AuctionPrice;
+
+    const priceState = state.AuctionPrice;
+    const price = priceState.price;
+    const failed = priceState.failed;
+    const fetching = priceState.fetching;
+    const fetched = priceState.fetched;
   
     return { bidPlaced, bid, failed, fetching, fetched, price };
 };

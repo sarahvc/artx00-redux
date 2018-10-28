@@ -54,6 +54,10 @@ class Account extends Component {
 
     componentDidMount() {
         this.props.fetchAccountDetails();
+        console.log(this.props.failed);
+        console.log(this.props.fetching);
+        console.log(this.props.fetched);
+        console.log(this.props.details.email);
     }
 
     componentDidUpdate() {

@@ -4,16 +4,19 @@ const appContractAbi = [{'constant':true,'inputs':[],'name':'initEth_','outputs'
 export const getAuctionPrice = () => {
     const web3 = window.web3;
 
-    const account = web3.eth.accounts[0];
+    //const account = web3.eth.accounts[0];
 
     const appContract = web3.eth.contract(appContractAbi).at(app_contract_address);
    
-    let price = appContract.getBuyPrice({}, {
-        from: account
-    }, (err, transactionHash) => {
-        if(!err) {
-            console.log(transactionHash);
+    let price;
+    appContract.getBuyPrice(function(error, result){
+        if(!error) {
+            price = result.c[0];
+            console.log(price);
+        } else {
+            console.error(error);
         }
     });
+    
     return price;
 };

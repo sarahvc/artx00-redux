@@ -2,7 +2,7 @@ import { api_service_url } from '../../config/common-paths';
 import axios from 'axios';
 
 export const getAccountDetails = () => {
-    return new Promise((resolve, reject) => {
+    let res = new Promise((resolve, reject) => {
         const web3 = window.web3;
         if(!web3 || !web3.isConnected() || !web3.currentProvider.isMetaMask) {
             reject('No web3!');
@@ -20,4 +20,6 @@ export const getAccountDetails = () => {
                 reject(err);
             });
     });
+    console.log(res);
+    return res;
 };
