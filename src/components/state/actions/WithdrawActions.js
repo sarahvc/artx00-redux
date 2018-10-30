@@ -12,4 +12,4 @@ const withdrawAction = () => ({
 
 // EXPORT ACTIONS
 
-export { withdrawAction as withdraw };
+export { withdrawAction as withdrawToWallet };

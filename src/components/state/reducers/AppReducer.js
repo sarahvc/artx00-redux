@@ -12,7 +12,7 @@ import { FetchZipCodesReducer } from './FetchZipCodesReducer';
 import { PlaceBidReducer } from './PlaceBidReducer';
 import { SubscribeReducer } from './SubscribeReducer';
 //import { ChangeUserNameReducer } from './ChangeUserNameReducer';
-//import { WithdrawReducer } from './WithdrawReducer';
+import { WithdrawReducer } from './WithdrawReducer';
 import { FetchAccountDetailsReducer } from './AccountDetailsReducer';
 //import { FetchAuctionDetailsReducer } from './AuctionDetailsReducer';
 import { FetchAuctionPriceReducer } from './AuctionPriceReducer';
@@ -26,7 +26,7 @@ export const AppReducer = combineReducers({
     placeBidTo: PlaceBidReducer,
     subscribeTo: SubscribeReducer,
     //changeUserName: ChangeUserNameReducer,
-    //withdraw : WithdrawReducer,
+    withdrawTo : WithdrawReducer,
     AccountDetails : FetchAccountDetailsReducer,
     AuctionPrice : FetchAuctionPriceReducer
 });

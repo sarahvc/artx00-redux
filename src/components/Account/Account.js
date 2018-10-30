@@ -10,7 +10,7 @@ import { SubscribeAccount } from '../Subscribe/SubscribeAccount';
 import AccountTR from './AccountTR';
 import ReferLink from '../shared/atoms/ReferLink';
 import ShareTo from '../shared/atoms/ShareTo';
-//import Withdraw from '../home/Withdraw';
+import { Withdraw } from './Withdraw';
 
 
 class Account extends Component {
@@ -54,10 +54,6 @@ class Account extends Component {
 
     componentDidMount() {
         this.props.fetchAccountDetails();
-        console.log(this.props.failed);
-        console.log(this.props.fetching);
-        console.log(this.props.fetched);
-        console.log(this.props.details.email);
     }
 
     componentDidUpdate() {
@@ -160,7 +156,7 @@ class Account extends Component {
                                             <AccountTR label='Available for withdraw' content={'1234'}/>
                                         </tbody>
                                     </table>
-                                    <button type='button'>Withdraw</button>
+                                    <Withdraw/>
                                 </div>
                             </div>
                         </div>
