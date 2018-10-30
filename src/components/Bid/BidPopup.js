@@ -73,7 +73,7 @@ const mapStateToProps = state => {
     const bidPlaced = bidState.fetched;
     const bid = bidState.bid;
 
-    const priceState = state.AuctionPrice;
+    const priceState = state.auctionPrice;
     const price = priceState.price;
     const failed = priceState.failed;
     const fetching = priceState.fetching;

@@ -149,11 +149,11 @@ class Account extends Component {
                                         </thead>
                                         <tbody>
                                             <AccountTR label='Bid' content={'1234'}/>
-                                            <AccountTR label='Shares' content={'1234'}/>
-                                            <AccountTR label='Referral' content={'1234'}/>
-                                            <AccountTR label='Total Earnings' content={'1234'}/>
-                                            <AccountTR label='Withdrawn' content={'1234'}/>
-                                            <AccountTR label='Available for withdraw' content={'1234'}/>
+                                            <AccountTR label='Shares' content={this.props.details.shares}/>
+                                            <AccountTR label='Referral' content={this.props.details.referralEarnings}/>
+                                            <AccountTR label='Total Earnings' content={this.props.details.totalEarnings}/>
+                                            <AccountTR label='Withdrawn' content={this.props.details.totalEarnings - this.props.details.availabelEarnings}/>
+                                            <AccountTR label='Available for withdraw' content={this.props.details.availabelEarnings}/>
                                         </tbody>
                                     </table>
                                     <Withdraw/>
@@ -179,7 +179,7 @@ Account.propTypes = {
 };
   
 const mapStateToProps = state => {
-    const { failed, fetching, fetched, details } = state.AccountDetails;
+    const { failed, fetching, fetched, details } = state.accountDetails;
 
     return { failed, fetching, fetched, details};
 };

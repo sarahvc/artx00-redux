@@ -27,6 +27,6 @@ export const AppReducer = combineReducers({
     subscribeTo: SubscribeReducer,
     //changeUserName: ChangeUserNameReducer,
     withdrawTo : WithdrawReducer,
-    AccountDetails : FetchAccountDetailsReducer,
-    AuctionPrice : FetchAuctionPriceReducer
+    accountDetails : FetchAccountDetailsReducer,
+    auctionPrice : FetchAuctionPriceReducer
 });
