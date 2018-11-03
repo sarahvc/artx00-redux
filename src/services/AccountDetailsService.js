@@ -5,13 +5,12 @@ import { api_service_url } from '../../config/common-paths';
 import axios from 'axios';
 
 
-export const getAccountDetails = () => {
+export const getAccountDetails = (account) => {
     let details,
         detailsArray;
 
     const web3 = window.web3;
-    const appContract = web3.eth.contract(appContractAbi).at(app_contract_address),
-        account = web3.eth.accounts[0];
+    const appContract = web3.eth.contract(appContractAbi).at(app_contract_address);
 
     details = new Promise((resolve, reject) => {
         const web3 = window.web3;
@@ -19,7 +18,6 @@ export const getAccountDetails = () => {
             reject('No web3!');
         }
 
-        const account = web3.eth.accounts[0];
         if(!account) {
             reject('No account!');
         }

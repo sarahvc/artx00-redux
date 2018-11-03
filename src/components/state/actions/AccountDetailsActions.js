@@ -7,9 +7,9 @@ export const FETCH_ACCOUNT_DETAILS_REJECTED = 'FETCH_ACCOUNT_DETAILS_REJECTED';
 
 // ACTION GENERATORS
 
-const fetchAccountDetailsAction = () => ({
+const fetchAccountDetailsAction = (account) => ({
     type: FETCH_ACCOUNT_DETAILS,
-    payload: getAccountDetails()
+    payload: getAccountDetails(account)
 });
 
 
