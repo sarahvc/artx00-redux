@@ -8,7 +8,7 @@ import {
 // INITIALIZE STATE
 
 const initialState = {
-    bid: '',
+    code: '',
     fetching: false,
     fetched: false,
     failed: false
@@ -22,7 +22,7 @@ export const PlaceBidReducer = (state = initialState, action) => {
         case PLACE_BID_PENDING:
             return {
                 ...state,
-                bid: '',
+                code: '',
                 fetching: true,
                 fetched: false,
                 failed: false
@@ -30,7 +30,7 @@ export const PlaceBidReducer = (state = initialState, action) => {
         case PLACE_BID_FULFILLED:
             return {
                 ...state,
-                bid: action.payload,
+                code: action.payload,
                 fetching: false,
                 fetched: true,
                 failed: false
@@ -38,7 +38,7 @@ export const PlaceBidReducer = (state = initialState, action) => {
         case PLACE_BID_REJECTED:
             return {
                 ...state,
-                bid: '',
+                code: '',
                 fetching: false,
                 fetched: false,
                 failed: true

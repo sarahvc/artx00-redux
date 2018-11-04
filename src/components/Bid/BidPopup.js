@@ -44,9 +44,9 @@ class BidPopup extends Component {
                     ? <div className='artx-bid-container position-absolute artx-gradient-outter'>
                         <div className='artx-gradient-inner pt-4 apb-14 w-100'>
                             <BidFormComponent onSubmit={this.onSubmit} buyprice={this.props.details.price + ''} rfcode={this.props.details.rfcode}/>
-                            <p className='text-white'>{this.props.failed+''}</p>
-                            <p className='text-white'>{this.props.fetching+''}</p>
-                            <p className='text-white'>{this.props.fetched+''}</p>
+                            {
+                               this.props.bidPlaced && <p className='text-white'>Bid placed and your referral code is {this.props.code}</p>
+                            }
                         </div>
                     </div>
                     : null}
@@ -65,13 +65,13 @@ BidPopup.propTypes = {
     fetched: PropTypes.bool.isRequired,
     details: PropTypes.object.isRequired,
 
-    bid: PropTypes.string
+    code: PropTypes.string
 };
 
 const mapStateToProps = state => {
     const bidState = state.placeBidTo;
     const bidPlaced = bidState.fetched;
-    const bid = bidState.bid;
+    const code = bidState.code;
 
     const { failed, fetching, fetched, details } = state.bidDetails;
   
