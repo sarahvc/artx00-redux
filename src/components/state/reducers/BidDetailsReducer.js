@@ -1,44 +1,34 @@
-import {
-    CHANGE_USER_NAME_PENDING,
-    CHANGE_USER_NAME_FULFILLED,
-    CHANGE_USER_NAME_REJECTED
-} from '../actions/ChangeUserNameActions';
-  
-  
-// INITIALIZE STATE
+import { FETCH_BID_DETAILS_PENDING, FETCH_BID_DETAILS_FULFILLED, FETCH_BID_DETAILS_REJECTED } from '../actions/BidDetailsActions';
 
 const initialState = {
-    username: '',
+    details: {},
     fetching: false,
     fetched: false,
     failed: false
 };
-  
-  
-// REDUCER
-  
-export const ChangeUserNameReducer = (state = initialState, action) => {
+
+export const FetchBidDetailsReducer = (state = initialState, action) => {
     switch(action.type) {
-        case CHANGE_USER_NAME_PENDING:
+        case FETCH_BID_DETAILS_PENDING:
             return {
                 ...state,
-                username: '',
+                details: {},
                 fetching: true,
                 fetched: false,
                 failed: false
             };
-        case CHANGE_USER_NAME_FULFILLED:
+        case FETCH_BID_DETAILS_FULFILLED:
             return {
                 ...state,
-                username: action.payload,
+                details: action.payload,
                 fetching: false,
                 fetched: true,
                 failed: false
             };
-        case CHANGE_USER_NAME_REJECTED:
+        case FETCH_BID_DETAILS_REJECTED:
             return {
                 ...state,
-                username: '',
+                details: {},
                 fetching: false,
                 fetched: false,
                 failed: true

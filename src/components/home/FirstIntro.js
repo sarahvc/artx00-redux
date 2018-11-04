@@ -9,14 +9,6 @@ export default class FirstIntro extends Component {
         super(props);
     }
 
-    // componentDidMount() {
-    //     this.setState({showPlay: true});
-    // }
-
-    // componentWillUnmount() {
-    //     this.setState({showPlay: false});
-    // }
-
     render() {
         return (
             <div className='position-relative pt-5'>

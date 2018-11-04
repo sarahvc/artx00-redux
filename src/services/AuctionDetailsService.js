@@ -1,13 +1,17 @@
-import { api_service_url } from '../../config/common-paths';
-import axios from 'axios';
+import { app_contract_address } from '../../config/common-paths';
+const appContractAbi = require('../../contracts/Decentralism.json').abi;
+import Web3 from 'web3';
 
 export const getAuctionDetails = () => {
-    return new Promise((resolve, reject) => {
-        axios.get(api_service_url + '/auction/')
-            .then( response => {
-                resolve(response.data);
-            }).catch((err) => {
-                reject(err);
-            });
+    var web3 = new Web3(Web3.givenProvider);
+    const appContract = new web3.eth.Contract(appContractAbi, app_contract_address);
+    
+    appContract.methods.getAuctionDetails().call(function(error, result){
+        if(!error) {
+            return result;
+            console.log('results ' + result);
+        } else {
+            console.error(error);
+        }
     });
 };

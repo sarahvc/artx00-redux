@@ -1,56 +1,51 @@
-//import axios from 'axios';
-//import { app_contract_address } from '../../config/common-paths';
-//const appContractAbi = require('../../contracts/Decentralism.json').abi;
-
+import { app_contract_address } from '../../config/common-paths';
+const appContractAbi = require('../../contracts/Decentralism.json').abi;
+import { api_service_url } from '../../config/common-paths';
+import axios from 'axios';
+import Web3 from 'web3';
 
 export const placeBid = (bid) => {
-    //const web3 = window.web3;
-    //const appContract = web3.eth.contract(appContractAbi).at(app_contract_address);
-    //const account = web3.eth.accounts[0];
-    console.log( 'eth'+ bid.eth+ 'keys'+ bid.keys+ 'appr'+ bid.appraisal);
-    //appContract.buyXidNew(account, Number(bid.keys));
-    /*
-    //return new Promise((resolve, reject) => {
-        const web3 = window.web3;
-        if(!web3 || !web3.isConnected() || !web3.currentProvider.isMetaMask) {
-            //reject('No web3!');
-            console.log('No web3!');
-        }
+    var web3 = new Web3(Web3.givenProvider);
+    const appContract = new web3.eth.Contract(appContractAbi, app_contract_address);
+    let rfcode = false, 
+        rfCodeExist;
 
-        const appContract = web3.eth.contract(appContractAbi).at(app_contract_address);
-        const account = web3.eth.accounts[0];
-        if(!account) {
-            //reject('No account!');
-            console.log('No account!');
-        }
-
-        web3.eth.getTransactionCount(account, (error, txCount) => {
-            if(error) {
-                //reject(error);
-                console.log(error);
-            }
-            appContract.endTxNew(account, bid.eth, bid.keys, bid.appraisal, {
-                nonce: txCount,
-                from: account
-            }, (err, transactionId) => {
-                if(err) {
-                    reject(error);
-                    console.log(error);
-                } else {
-                    // axios.post(api_service_url + '/transaction/create', {
-                    //     address: account,
-                    //     transaction_id: transactionId,
-                    //     transaction_type: 'PlaceBid'
-                    // }).then(response => {
-                    //     console.log(response);//added for the warning about not using response
-                    //     resolve(transactionId);
-                    // }).catch((err) => {
-                    //     reject(err);
-                    // });
-                    console.log('should post to server');
-                }
-            });
-        });
-    //});
+    //need to get account
+    let account = '0x230fFFe09d99D902086C6e7Ca719455fB6587F27';
+    /* need to insert this info into axios call
+    {
+	"addr": account
+    }
     */
+
+    appContract.methods.buyXidNew(bid.rfcode, bid.appraisal).call(function(error, result){
+        if(!error) {
+            console.log(result);
+
+            rfCodeExist = new Promise((resolve, reject) => {
+                axios.get(api_service_url + '/code/' + account)
+                    .then( response => {
+                        resolve(response.data);
+                    }).catch((err) => {
+                        reject(err);
+                    });
+            });
+
+            if (!rfCodeExist.code) {
+                rfcode = new Promise((resolve, reject) => {
+                    axios.post(api_service_url + '/code/')
+                        .then( response => {
+                            resolve(response.data);
+                        }).catch((err) => {
+                            reject(err);
+                        });
+                });
+            }
+
+        } else {
+            console.error(error);
+        }
+    });
+
+    return rfcode;
 };

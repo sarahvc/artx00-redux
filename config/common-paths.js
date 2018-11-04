@@ -10,6 +10,6 @@ module.exports = {
     //app_contract_address: '0x4a746397E9666642E48cBC3FB6308Fb6D782C4b4', 
     app_contract_address: '0xc862BE7A4613Be417b21A588EE3e7E99b0225072', 
     //ropsten
-    eth_network: '3',
-    ether_scan: 'https://ropsten.etherscan.io/'
+    //eth_network: '3',
+    //ether_scan: 'https://ropsten.etherscan.io/'
 };

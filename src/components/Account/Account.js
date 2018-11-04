@@ -2,8 +2,6 @@ import React, { Component }  from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-//import isEmpty from 'lodash/isEmpty';
-import Web3 from 'web3';
 
 import { fetchAccountDetails } from '../state/actions/AccountDetailsActions';
 import { SubscribeAccount } from '../Subscribe/SubscribeAccount';
@@ -21,8 +19,7 @@ class Account extends Component {
         this.state = {
             eidtEmail: false,
             isOpen: false,
-            isFullHeight: false,
-            account: ''
+            isFullHeight: false
         };
 
         this.changeEmail = this.changeEmail.bind(this);
@@ -55,34 +52,7 @@ class Account extends Component {
     }
 
     componentDidMount() {
-        window.addEventListener('load', async () => { 
-            if (window.ethereum) {
-                window.web3 = new Web3(window.ethereum);
-                try {
-                    // Request account access if needed
-                    console.log('ethereum started');
-                    await window.ethereum.enable();
-                    // Acccounts now exposed
-                    this.setState({account : window.web3.eth.accounts[0]});
-                    console.log('ethereum sent');
-                } catch (error) {
-                    // User denied account access...
-                    console.log('denied');
-                }
-            }
-            // Legacy dapp browsers...
-            else if (window.web3) {
-                window.web3 = new Web3(window.web3.currentProvider);
-                // Acccounts always exposed
-                this.setState({account : window.web3.eth.accounts[0]});
-                console.log('web3 sent');
-            }
-            // Non-dapp browsers...
-            else {
-                console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
-            }
-        });
-        this.props.fetchAccountDetails(this.state.account);
+        this.props.fetchAccountDetails();
     }
 
     componentDidUpdate() {
@@ -99,12 +69,7 @@ class Account extends Component {
 
 
     render() {
-        const {editEmail, isOpen, isFullHeight, account} = this.state;
-
-        //const web3 = window.web3;
-        //const account = web3.eth.accounts[0];
-
-        //const truncatedAccount = this.state.account.slice(0, 3) + '...' + this.state.ccount.slice(-3);
+        const {editEmail, isOpen, isFullHeight } = this.state;
         
         const accountStyle = isFullHeight ?
             {
@@ -115,19 +80,6 @@ class Account extends Component {
                 maxHeight: '0',
                 overflow: 'hidden'
             };
-
-        let failed = false;
-        let error = null;
-    
-        // if (!web3) {
-        //     failed = true;
-        //     error = <p className='text-white'>Error</p>;
-        // }
-    
-        // if (!failed && isEmpty(web3.eth.accounts)) {
-        //     failed = true;
-        //     error = <p className='text-white'>No Account</p>;
-        // }
 
         return (
             <div>
@@ -143,7 +95,7 @@ class Account extends Component {
                                     <div>
                                         <label  htmlFor="artxWA" className="artx-type-twf text-white">Wallet Address</label>
                                         <div className="border-bottom">
-                                            <input type="text" readOnly className="artx-type-tw text-white border-0 w-100" id="artxWAd" value={account}/>
+                                            <input type="text" readOnly className="artx-type-tw text-white border-0 w-100" id="artxWAd" value={this.props.details.account.slice(0, 3) + '...' + this.props.details.account.slice(-3)}/>
                                         </div>
                                     </div>
                                     <div className="mt-3">
@@ -190,9 +142,6 @@ class Account extends Component {
                             </div>
                         </div>
                         : null
-                }
-                {
-                    failed && error
                 }
             </div>
         );

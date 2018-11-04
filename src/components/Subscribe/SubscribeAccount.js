@@ -21,6 +21,7 @@ class SubscribeAccount extends Component {
         return (
             <div>
                 <SubscribeFormComponent onSubmit={this.onSubmit}/>
+                {this.props.subscribeFetched && <p className='position-absolute'>Success</p>}
             </div>  
         );
     }

@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import { placeBid } from '../state/actions/PlaceBidActions';
 import { BidFormComponent } from './BidFormComponent';
-import { fetchAuctionPrice } from '../state/actions/AuctionPriceActions';
+import { fetchBidDetails } from '../state/actions/BidDetailsActions';
 
 class BidPopup extends Component {
     constructor(props) {
@@ -24,16 +24,16 @@ class BidPopup extends Component {
     }
 
     openBid(){
-        this.props.fetchAuctionPrice();
+        this.props.fetchBidDetails();
         this.setState({isOpen: true});
     }
 
     componentDidMount() {
-        this.props.fetchAuctionPrice();
+        this.props.fetchBidDetails();
     }
 
     componentWillUnmount() {
-        this.props.fetchAuctionPrice();
+        this.props.fetchBidDetails();
     }
 
     render() {
@@ -43,7 +43,7 @@ class BidPopup extends Component {
                 { this.state.isOpen
                     ? <div className='artx-bid-container position-absolute artx-gradient-outter'>
                         <div className='artx-gradient-inner pt-4 apb-14 w-100'>
-                            <BidFormComponent onSubmit={this.onSubmit} buyprice={this.props.price + ''}/>
+                            <BidFormComponent onSubmit={this.onSubmit} buyprice={this.props.details.price + ''} rfcode={this.props.details.rfcode}/>
                             <p className='text-white'>{this.props.failed+''}</p>
                             <p className='text-white'>{this.props.fetching+''}</p>
                             <p className='text-white'>{this.props.fetched+''}</p>
@@ -59,11 +59,11 @@ BidPopup.propTypes = {
     placeBid: PropTypes.func.isRequired,
     bidPlaced: PropTypes.bool.isRequired,
 
-    fetchAuctionPrice: PropTypes.func.isRequired,
+    fetchBidDetails: PropTypes.func.isRequired,
     failed: PropTypes.bool.isRequired,
     fetching: PropTypes.bool.isRequired,
     fetched: PropTypes.bool.isRequired,
-    price: PropTypes.number.isRequired,
+    details: PropTypes.object.isRequired,
 
     bid: PropTypes.string
 };
@@ -73,17 +73,13 @@ const mapStateToProps = state => {
     const bidPlaced = bidState.fetched;
     const bid = bidState.bid;
 
-    const priceState = state.auctionPrice;
-    const price = priceState.price;
-    const failed = priceState.failed;
-    const fetching = priceState.fetching;
-    const fetched = priceState.fetched;
+    const { failed, fetching, fetched, details } = state.bidDetails;
   
-    return { bidPlaced, bid, failed, fetching, fetched, price };
+    return { bidPlaced, bid, failed, fetching, fetched, details };
 };
   
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ placeBid, fetchAuctionPrice }, dispatch)
+    bindActionCreators({ placeBid, fetchBidDetails }, dispatch)
 );
   
 const hoc = connect(mapStateToProps, mapDispatchToProps)(BidPopup);

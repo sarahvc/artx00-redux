@@ -1,32 +1,24 @@
 // IMPORT PACKAGE REFERENCES
-
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
-
 // IMPORT REDUCERS
 
-import { FetchZipCodesReducer } from './FetchZipCodesReducer';
-
-//import { FetchAccountsReducer } from './fetchAccountsWeb3';
 import { PlaceBidReducer } from './PlaceBidReducer';
 import { SubscribeReducer } from './SubscribeReducer';
-//import { ChangeUserNameReducer } from './ChangeUserNameReducer';
 import { WithdrawReducer } from './WithdrawReducer';
 import { FetchAccountDetailsReducer } from './AccountDetailsReducer';
-//import { FetchAuctionDetailsReducer } from './AuctionDetailsReducer';
-import { FetchAuctionPriceReducer } from './AuctionPriceReducer';
+import { FetchAuctionDetailsReducer } from './AuctionDetailsReducer';
+import { FetchBidDetailsReducer } from './BidDetailsReducer';
 
 // EXPORT APP REDUCER
 
 export const AppReducer = combineReducers({
-    zipCodes: FetchZipCodesReducer,
-    //accounts: FetchAccountsReducer,
     form: formReducer,
     placeBidTo: PlaceBidReducer,
     subscribeTo: SubscribeReducer,
-    //changeUserName: ChangeUserNameReducer,
     withdrawTo : WithdrawReducer,
     accountDetails : FetchAccountDetailsReducer,
-    auctionPrice : FetchAuctionPriceReducer
+    auctionDetails : FetchAuctionDetailsReducer,
+    bidDetails : FetchBidDetailsReducer
 });
