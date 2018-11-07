@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { fetchAccountHead } from '../state/actions/AccountHeadActions';
+import { fetchAccountBody } from '../state/actions/AccountBodyActions';
 import { SubscribeAccount } from '../Subscribe/SubscribeAccount';
 
 import AccountTR from './AccountTR';
@@ -53,6 +54,7 @@ class Account extends Component {
 
     componentDidMount() {
         this.props.fetchAccountHead();
+        this.props.fetchAccountBody();
     }
 
     componentDidUpdate() {
@@ -133,12 +135,12 @@ class Account extends Component {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <AccountTR label='Bid' content='0'/>
-                                            <AccountTR label='Shares' content='0'/>
-                                            <AccountTR label='Referral' content='0'/>
-                                            <AccountTR label='Total Earnings' content='0'/>
-                                            <AccountTR label='Withdrawn' content='0'/>
-                                            <AccountTR label='Available for withdraw' content='0'/>
+                                            <AccountTR label='Bid' content={this.props.body[5]}/>
+                                            <AccountTR label='Shares' content={this.props.body[1]}/>
+                                            <AccountTR label='Referral' content={this.props.body[4]}/>
+                                            <AccountTR label='Total Earnings' content={this.props.body[2]}/>
+                                            <AccountTR label='Withdrawn' content={(parseInt(this.props.body[2]) - parseInt(this.props.body[3])).toString()}/>
+                                            <AccountTR label='Available for withdraw' content={this.props.body[3]}/>
                                         </tbody>
                                     </table>
                                     <Withdraw/>
@@ -158,16 +160,24 @@ Account.propTypes = {
     fetching: PropTypes.bool.isRequired,
     fetched: PropTypes.bool.isRequired,
     head: PropTypes.object,
+
+    fetchAccountBody: PropTypes.func.isRequired,
+    afetched: PropTypes.bool.isRequired,
+    body: PropTypes.object
 };
   
 const mapStateToProps = state => {
     const { failed, fetching, fetched, head } = state.accountHead;
 
-    return { failed, fetching, fetched, head };
+    const bodystate = state.accountHead;
+    const afetched = bodystate.fetched;
+    const body = bodystate.body;
+
+    return { failed, fetching, fetched, head, afetched, body};
 };
 
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ fetchAccountHead }, dispatch)
+    bindActionCreators({ fetchAccountHead, fetchAccountBody }, dispatch)
 );
 
 const hoc = connect(mapStateToProps, mapDispatchToProps)(Account);

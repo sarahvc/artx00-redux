@@ -1,7 +1,7 @@
 import { FETCH_ACCOUNT_BODY_PENDING, FETCH_ACCOUNT_BODY_FULFILLED, FETCH_ACCOUNT_BODY_REJECTED } from '../actions/AccountBodyActions';
 
 const initialState = {
-    body: [],
+    body: {},
     fetching: false,
     fetched: false,
     failed: false
@@ -12,7 +12,7 @@ export const FetchAccountBodyReducer = (state = initialState, action) => {
         case FETCH_ACCOUNT_BODY_PENDING:
             return {
                 ...state,
-                body: [],
+                body: {},
                 fetching: true,
                 fetched: false,
                 failed: false
@@ -28,7 +28,7 @@ export const FetchAccountBodyReducer = (state = initialState, action) => {
         case FETCH_ACCOUNT_BODY_REJECTED:
             return {
                 ...state,
-                body: [],
+                body: {},
                 fetching: false,
                 fetched: false,
                 failed: true
