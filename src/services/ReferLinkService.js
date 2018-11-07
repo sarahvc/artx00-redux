@@ -3,57 +3,28 @@ import { app_contract_address } from '../../config/common-paths';
 const appContractAbi = require('../../contracts/Decentralism.json').abi;
 import Web3 from 'web3';
 
-function getUrl() {
-    //slice number needs change
-    let rfcode = window.location.href.slice(23);
-    if (rfcode.length === 0) {
-        return false;
-    } else {
-        return rfcode;
-    }  
-}
+export const getReferLink = () => {
+    return new Promise((resolve, reject) => {
+        var web3 = new Web3(Web3.givenProvider);
 
-export const getBidDetails = () => {
-    var web3 = new Web3(Web3.givenProvider);
+        const appContract = new web3.eth.Contract(appContractAbi, app_contract_address);
 
-    const appContract = new web3.eth.Contract(appContractAbi, app_contract_address);
-   
-    let bidDetails,
-        keyPrice,  
-        checkResult,
-        refercode;
-    
-    appContract.methods.getBuyPrice().call(function(error, result){
-        if(!error) {
-            keyPrice = result;
-            console.log(keyPrice);
+        let refercode = window.location.href.slice(23);
+
+        if (refercode.length != 0) {
+            appContract.methods.checkReferCode(refercode).call(function(error, result){
+                if(!error) {
+                    if (result == true) {
+                        resolve(refercode);
+                    } else {
+                        resolve('');
+                    }
+                } else {
+                    reject(error);
+                }
+            });
         } else {
-            console.error(error);
-        }
+            resolve(refercode);
+        }  
     });
-
-    refercode = getUrl();
-    if (refercode) {
-        appContract.methods.checkReferCode(refercode).call(function(error, result){
-            if(!error) {
-                checkResult = result;
-                console.log(checkResult);
-            } else {
-                console.error(error);
-            }
-        });
-    } else {
-        checkResult = false;
-    }
-
-    if (checkResult === false) {
-        refercode = '';
-    }
-
-    bidDetails = {
-        price: keyPrice,
-        rfcode: refercode
-    }
-  
-    return bidDetails;
 };

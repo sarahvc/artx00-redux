@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { fetchAccountDetails } from '../state/actions/AccountDetailsActions';
+import { fetchAccountHead } from '../state/actions/AccountHeadActions';
 import { SubscribeAccount } from '../Subscribe/SubscribeAccount';
 
 import AccountTR from './AccountTR';
@@ -52,7 +52,7 @@ class Account extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchAccountDetails();
+        this.props.fetchAccountHead();
     }
 
     componentDidUpdate() {
@@ -81,6 +81,10 @@ class Account extends Component {
                 overflow: 'hidden'
             };
 
+        console.log(this.props.failed);
+        console.log(this.props.fetching);
+        console.log(this.props.fetched);
+
         return (
             <div>
                 <button className='border-0 bg-transparent' type='button' onClick={() => this.toggleAccount(true)}><i className="far fa-user artx-gradient-text artx-type-twf"></i><span className='artx-gradient-text artx-type-twf d-none d-lg-inline'> Personal Account</span></button>
@@ -95,7 +99,7 @@ class Account extends Component {
                                     <div>
                                         <label  htmlFor="artxWA" className="artx-type-twf text-white">Wallet Address</label>
                                         <div className="border-bottom">
-                                            <input type="text" readOnly className="artx-type-tw text-white border-0 w-100" id="artxWAd" value={this.props.details.account.slice(0, 3) + '...' + this.props.details.account.slice(-3)}/>
+                                            <input type="text" readOnly className="artx-type-tw text-white border-0 w-100" id="artxWAd" value={this.props.head.address}/>
                                         </div>
                                     </div>
                                     <div className="mt-3">
@@ -103,7 +107,7 @@ class Account extends Component {
                                         { editEmail
                                             ? <SubscribeAccount/>
                                             : <div className="d-flex justify-content-between border-bottom">
-                                                <input type="text" readOnly  className="artx-type-tw text-white border-0 w-100" id="artxAN" value={this.props.details.email}/>
+                                                <input type="text" readOnly  className="artx-type-tw text-white border-0 w-100" id="artxAN" value={this.props.head.email}/>
                                                 <button className="artx-icon-btn" onClick={this.changeEmail} aria-label='edit account name' type='button'>
                                                     <i className="far fa-edit artx-type-twf artx-gradient-text"></i>
                                                 </button>
@@ -112,8 +116,8 @@ class Account extends Component {
                                     <div className="mt-3">
                                         <label htmlFor="artxRL" className="artx-type-twf text-white">Personal Referral Link</label>
                                         {
-                                            this.props.details.code
-                                                ?<ReferLink link={this.props.details.code} account={true}/>
+                                            this.props.head.code
+                                                ?<ReferLink link={this.props.head.code} account={true}/>
                                                 :<p className='text-white'>no code yet</p>
                                         }
                                     </div>
@@ -129,12 +133,12 @@ class Account extends Component {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <AccountTR label='Bid' content={'1234'}/>
-                                            <AccountTR label='Shares' content={this.props.details.shares}/>
-                                            <AccountTR label='Referral' content={this.props.details.referralEarnings}/>
-                                            <AccountTR label='Total Earnings' content={this.props.details.totalEarnings}/>
-                                            <AccountTR label='Withdrawn' content={this.props.details.totalEarnings - this.props.details.availabelEarnings}/>
-                                            <AccountTR label='Available for withdraw' content={this.props.details.availabelEarnings}/>
+                                            <AccountTR label='Bid' content='0'/>
+                                            <AccountTR label='Shares' content='0'/>
+                                            <AccountTR label='Referral' content='0'/>
+                                            <AccountTR label='Total Earnings' content='0'/>
+                                            <AccountTR label='Withdrawn' content='0'/>
+                                            <AccountTR label='Available for withdraw' content='0'/>
                                         </tbody>
                                     </table>
                                     <Withdraw/>
@@ -149,21 +153,21 @@ class Account extends Component {
 }
 
 Account.propTypes = {
-    fetchAccountDetails: PropTypes.func.isRequired,
+    fetchAccountHead: PropTypes.func.isRequired,
     failed: PropTypes.bool.isRequired,
     fetching: PropTypes.bool.isRequired,
     fetched: PropTypes.bool.isRequired,
-    details: PropTypes.object
+    head: PropTypes.object,
 };
   
 const mapStateToProps = state => {
-    const { failed, fetching, fetched, details } = state.accountDetails;
+    const { failed, fetching, fetched, head } = state.accountHead;
 
-    return { failed, fetching, fetched, details};
+    return { failed, fetching, fetched, head };
 };
 
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ fetchAccountDetails }, dispatch)
+    bindActionCreators({ fetchAccountHead }, dispatch)
 );
 
 const hoc = connect(mapStateToProps, mapDispatchToProps)(Account);

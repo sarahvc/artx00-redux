@@ -1,34 +1,34 @@
-import { FETCH_BID_DETAILS_PENDING, FETCH_BID_DETAILS_FULFILLED, FETCH_BID_DETAILS_REJECTED } from '../actions/BidDetailsActions';
+import { FETCH_PRICE_PENDING, FETCH_PRICE_FULFILLED, FETCH_PRICE_REJECTED } from '../actions/AuctionPriceActions';
 
 const initialState = {
-    details: {},
+    price: '',
     fetching: false,
     fetched: false,
     failed: false
 };
 
-export const FetchBidDetailsReducer = (state = initialState, action) => {
+export const FetchAuctionPriceReducer = (state = initialState, action) => {
     switch(action.type) {
-        case FETCH_BID_DETAILS_PENDING:
+        case FETCH_PRICE_PENDING:
             return {
                 ...state,
-                details: {},
+                price: '',
                 fetching: true,
                 fetched: false,
                 failed: false
             };
-        case FETCH_BID_DETAILS_FULFILLED:
+        case FETCH_PRICE_FULFILLED:
             return {
                 ...state,
-                details: action.payload,
+                price: action.payload,
                 fetching: false,
                 fetched: true,
                 failed: false
             };
-        case FETCH_BID_DETAILS_REJECTED:
+        case FETCH_PRICE_REJECTED:
             return {
                 ...state,
-                details: {},
+                price: '',
                 fetching: false,
                 fetched: false,
                 failed: true

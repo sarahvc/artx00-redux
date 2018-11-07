@@ -9,7 +9,6 @@ import { Header } from '../Header/Header';
 import { HomePage } from '../pages/HomePage';
 import { AboutPage } from '../pages/AboutPage';
 import { GuidePage } from '../pages/GuidePage';
-import { ZipCodesPage } from '../pages/ZipCodesPage';
 
 
 // COMPONENT
@@ -20,7 +19,6 @@ export const AppRouter = () => (
             <Header />            
             <Switch>
                 <Route path='/' component={HomePage} exact={true} />
-                <Route path='/zipcodes' component={ZipCodesPage} />
                 <Route path='/about' component={AboutPage} />
                 <Route path='/guide' component={GuidePage} />
                 <Redirect to="/" />

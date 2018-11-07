@@ -1,34 +1,34 @@
-import { FETCH_ACCOUNT_DETAILS_PENDING, FETCH_ACCOUNT_DETAILS_FULFILLED, FETCH_ACCOUNT_DETAILS_REJECTED } from '../actions/AccountDetailsActions';
+import { FETCH_ACCOUNT_HEAD_PENDING, FETCH_ACCOUNT_HEAD_FULFILLED, FETCH_ACCOUNT_HEAD_REJECTED } from '../actions/AccountHeadActions';
 
 const initialState = {
-    details: {},
+    head: {},
     fetching: false,
     fetched: false,
     failed: false
 };
 
-export const FetchAccountDetailsReducer = (state = initialState, action) => {
+export const FetchAccountHeadReducer = (state = initialState, action) => {
     switch(action.type) {
-        case FETCH_ACCOUNT_DETAILS_PENDING:
+        case FETCH_ACCOUNT_HEAD_PENDING:
             return {
                 ...state,
-                details: {},
+                head: {},
                 fetching: true,
                 fetched: false,
                 failed: false
             };
-        case FETCH_ACCOUNT_DETAILS_FULFILLED:
+        case FETCH_ACCOUNT_HEAD_FULFILLED:
             return {
                 ...state,
-                details: action.payload,
+                head: action.payload,
                 fetching: false,
                 fetched: true,
                 failed: false
             };
-        case FETCH_ACCOUNT_DETAILS_REJECTED:
+        case FETCH_ACCOUNT_HEAD_REJECTED:
             return {
                 ...state,
-                details: {},
+                head: {},
                 fetching: false,
                 fetched: false,
                 failed: true

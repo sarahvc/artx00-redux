@@ -5,7 +5,8 @@ import { bindActionCreators } from 'redux';
 
 import { placeBid } from '../state/actions/PlaceBidActions';
 import { BidFormComponent } from './BidFormComponent';
-import { fetchBidDetails } from '../state/actions/BidDetailsActions';
+import { fetchAuctionPrice } from '../state/actions/AuctionPriceActions';
+import { fetchReferLink } from '../state/actions/ReferLinkActions';
 
 class BidPopup extends Component {
     constructor(props) {
@@ -24,28 +25,29 @@ class BidPopup extends Component {
     }
 
     openBid(){
-        this.props.fetchBidDetails();
+        this.props.fetchAuctionPrice();
         this.setState({isOpen: true});
     }
 
     componentDidMount() {
-        this.props.fetchBidDetails();
-    }
-
-    componentWillUnmount() {
-        this.props.fetchBidDetails();
+        this.props.fetchAuctionPrice();
     }
 
     render() {
+        let rfcodeValid = this.props.rfcode.length!=0?true:false;
         return (
             <div>
                 <button className='d-block ml-auto artx-btn text-white artx-type-twf py-3 apx-14' onClick={this.openBid}>Bid <i className="fas fa-gavel"></i></button>
                 { this.state.isOpen
                     ? <div className='artx-bid-container position-absolute artx-gradient-outter'>
                         <div className='artx-gradient-inner pt-4 apb-14 w-100'>
-                            <BidFormComponent onSubmit={this.onSubmit} buyprice={this.props.details.price + ''} rfcode={this.props.details.rfcode}/>
                             {
-                               this.props.bidPlaced && <p className='text-white'>Bid placed and your referral code is {this.props.code}</p>
+                                rfcodeValid
+                                    ?<BidFormComponent onSubmit={this.onSubmit} buyprice={this.props.price} rfcode={this.props.rfcode}/>
+                                    :<BidFormComponent onSubmit={this.onSubmit} buyprice={this.props.price}/>
+                            }
+                            {
+                                this.props.bidPlaced && <p className='text-white'>Bid placed and your referral code is {this.props.code}</p>
                             }
                         </div>
                     </div>
@@ -59,11 +61,17 @@ BidPopup.propTypes = {
     placeBid: PropTypes.func.isRequired,
     bidPlaced: PropTypes.bool.isRequired,
 
-    fetchBidDetails: PropTypes.func.isRequired,
+    fetchAuctionPrice: PropTypes.func.isRequired,
     failed: PropTypes.bool.isRequired,
     fetching: PropTypes.bool.isRequired,
     fetched: PropTypes.bool.isRequired,
-    details: PropTypes.object.isRequired,
+    price: PropTypes.string.isRequired,
+
+    fetchReferLink: PropTypes.func.isRequired,
+    rffailed: PropTypes.bool,
+    rffetching: PropTypes.bool,
+    rffetched: PropTypes.bool,
+    rfcode: PropTypes.string,
 
     code: PropTypes.string
 };
@@ -73,13 +81,17 @@ const mapStateToProps = state => {
     const bidPlaced = bidState.fetched;
     const code = bidState.code;
 
-    const { failed, fetching, fetched, details } = state.bidDetails;
+    const { failed, fetching, fetched, price } = state.auctionPrice;
+
+    const referLinkState = state.referLink;
+    const rffetched = referLinkState.fetched;
+    const rfcode = referLinkState.rfcode;
   
-    return { bidPlaced, bid, failed, fetching, fetched, details };
+    return { bidPlaced, code, failed, fetching, fetched, price, rffetched, rfcode };
 };
   
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ placeBid, fetchBidDetails }, dispatch)
+    bindActionCreators({ placeBid, fetchAuctionPrice, fetchReferLink }, dispatch)
 );
   
 const hoc = connect(mapStateToProps, mapDispatchToProps)(BidPopup);
