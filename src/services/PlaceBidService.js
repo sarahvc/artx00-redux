@@ -14,19 +14,23 @@ export const placeBid = (bid) => {
                 appContract.methods.buyXidNew(bid.rfcode, bid.appraisal).call(function(error, result){
                     if(!error) {
                         console.log(result);
+                        
                         axios.get(api_service_url + '/code/' + accounts[0])
                             .then( response => {
-                                if (response.data == null) {
+                                if (response.data.code == null) {
                                     axios.post(api_service_url + '/code/', {
                                         'addr': accounts[0]
                                     })
-                                        .then( response => {
-                                            resolve(response.data);
+                                        .then(response => {
+                                            console.log('return refer code');
+                                            console.log(response.data.code);
+                                            resolve(response.data.code);
                                         }).catch((err) => {
                                             reject(err);
                                         });
                                 } else {
-                                    resolve(response.data);
+                                    console.log('should be null refer code');
+                                    resolve(response.data.code);
                                 } 
                             }).catch((err) => {
                                 reject(err);

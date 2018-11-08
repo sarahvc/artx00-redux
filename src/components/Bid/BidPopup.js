@@ -31,6 +31,7 @@ class BidPopup extends Component {
 
     componentDidMount() {
         this.props.fetchAuctionPrice();
+        this.props.fetchReferLink();
     }
 
     render() {
