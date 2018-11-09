@@ -6,7 +6,6 @@ export const BidInput = ({ input }) => {
         <div>
             <input
                 {...input}
-                type='number'
                 className="artx-bid-input artx-type-et text-white mr-2"
                 required
             />

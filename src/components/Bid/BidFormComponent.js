@@ -17,7 +17,7 @@ class BidFormComponent extends Component {
                 <Field 
                     name='keys'
                     component = {BidInput}/>
-                <p className='text-white'>eth</p>
+                <p className='text-white'>keys</p>
                 <p className='text-white'>{this.props.buyprice}</p>
                 <p className='text-white'>name appraisal</p>
                 <Field 
